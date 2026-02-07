@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydro Heroes | Professional Window Washing & Car Detailing</title>
+    <meta name="description"
+        content="Hydro Heroes provides premium window washing and car detailing services in Vermont. Get a free quote today!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="top">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#top" class="logo">
+                <img src="logo.png" alt="Hydro Heroes Logo">
+                <span class="logo-text">HYDRO HEROES</span>
+            </a>
+
+            <!-- Service Toggle -->
+            <div class="service-toggle">
+                <button class="toggle-btn active" data-service="windows" id="toggle-windows">
+                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="12" y1="3" x2="12" y2="21" />
+                    </svg>
+                    Window Washing
+                </button>
+                <button class="toggle-btn" data-service="detailing" id="toggle-detailing">
+                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
+                        <line x1="9" y1="17" x2="15" y2="17" />
+                        <path d="M5 6l7 0" />
+                    </svg>
+                    Car Detailing
+                </button>
+            </div>
+
+            <a href="#contact" class="nav-cta">Get Free Quote</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-windows">
+        <div class="hero-bg"></div>
+        <div class="hero-particles"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Vermont's #1 Cleaning Professionals
+                </span>
+                <h1 class="hero-title" id="hero-title">
+                    <span class="title-line">Dirty Windows?</span>
+                    <span class="title-accent">We Can Fix That.</span>
+                </h1>
+                <p class="hero-subtitle" id="hero-subtitle">
+                    Professional window washing that brings the sparkle back to your home or business.
+                    Crystal clear views, guaranteed satisfaction.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Get Your Free Quote</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                    <a href="#services" class="btn btn-secondary">
+                        View Services
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        <span>5.0 Rating</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>100% Satisfaction</span>
+                    </div>
+                    <div class="trust-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Fast Service</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="hero-image-glow"></div>
+                    <img src="logo-color.png" alt="Hydro Heroes Mascot" class="hero-mascot">
+                    <div class="floating-card card-1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        <span>Fully Insured</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>Eco-Friendly</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,60 C480,120 960,0 1440,60 L1440,120 L0,120 Z" fill="white" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section (Window Washing only) -->
+    <section class="gallery-section" id="gallery">
+        <div class="gallery-container">
+            <div class="gallery-scroll-wrapper">
+                <div class="gallery-scroll-track">
+                    <!-- First set of images -->
+                    <div class="gallery-image">
+                        <img src="images/gallery1.png" alt="Window cleaning before and after">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery2.png" alt="Colonial home clean windows">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery3.png" alt="Vermont craftsman home">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery4.png" alt="Commercial storefront windows">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery5.png" alt="Luxury lakeside home">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery6.png" alt="Vermont farmhouse">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="gallery-image">
+                        <img src="images/gallery1.png" alt="Window cleaning before and after">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery2.png" alt="Colonial home clean windows">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery3.png" alt="Vermont craftsman home">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery4.png" alt="Commercial storefront windows">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery5.png" alt="Luxury lakeside home">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/gallery6.png" alt="Vermont farmhouse">
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-content">
+                <span class="section-tag">Our Work</span>
+                <h2 class="section-title">Homes We've Saved</h2>
+                <p class="gallery-description">
+                    From cozy farmhouses to luxury lakefront properties, we've helped hundreds of Vermont homeowners see
+                    the world more clearly. Every window we clean is a testament to our commitment to quality.
+                </p>
+                <div class="gallery-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Homes Cleaned</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Commercial Properties</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-primary">
+                    <span>Get Your Free Quote</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section (Car Detailing only) -->
+    <section class="gallery-section car-gallery-section" id="car-gallery" style="display: none;">
+        <div class="gallery-container">
+            <div class="gallery-scroll-wrapper">
+                <div class="gallery-scroll-track">
+                    <!-- First set of images -->
+                    <div class="gallery-image">
+                        <img src="images/car_gallery1.png" alt="Luxury black sports car detailing">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery2.png" alt="White BMW ceramic coating">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery3.png" alt="Red sports car polish">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery4.png" alt="Premium interior detailing">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery5.png" alt="Silver Mercedes SUV detail">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery6.png" alt="Blue pickup truck detailing">
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="gallery-image">
+                        <img src="images/car_gallery1.png" alt="Luxury black sports car detailing">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery2.png" alt="White BMW ceramic coating">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery3.png" alt="Red sports car polish">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery4.png" alt="Premium interior detailing">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery5.png" alt="Silver Mercedes SUV detail">
+                    </div>
+                    <div class="gallery-image">
+                        <img src="images/car_gallery6.png" alt="Blue pickup truck detailing">
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-content">
+                <span class="section-tag">Our Work</span>
+                <h2 class="section-title">Cars We've Saved</h2>
+                <p class="gallery-description">
+                    From daily drivers to luxury sports cars, we've restored and protected hundreds of vehicles.
+                    Every detail matters to us as much as it does to you.
+                </p>
+                <div class="gallery-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Cars Detailed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Ceramic Coatings</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Satisfaction Rate</span>
+                    </div>
+                </div>
+                <a href="#contact" class="btn btn-primary">
+                    <span>Get Your Free Quote</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Simple Process</span>
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Getting your property sparkling clean is easy</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                        </svg>
+                    </div>
+                    <h3>Request a Quote</h3>
+                    <p>Fill out our quick form or give us a call. We'll get back to you within hours.</p>
+                </div>
+                <div class="step-connector">
+                    <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+                        <path d="M0,10 L90,10 M80,5 L90,10 L80,15" stroke="currentColor" stroke-width="2" fill="none" />
+                    </svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                    </div>
+                    <h3>Schedule Service</h3>
+                    <p>Pick a time that works for you. We work around your schedule, not the other way around.</p>
+                </div>
+                <div class="step-connector">
+                    <svg viewBox="0 0 100 20" preserveAspectRatio="none">
+                        <path d="M0,10 L90,10 M80,5 L90,10 L80,15" stroke="currentColor" stroke-width="2" fill="none" />
+                    </svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M14.5 4h-5L7 7H4a2 2 0 00-2 2v9a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2h-3l-2.5-3z" />
+                            <circle cx="12" cy="13" r="3" />
+                        </svg>
+                    </div>
+                    <h3>Enjoy the Results</h3>
+                    <p>Sit back and admire. We leave your property looking absolutely spotless.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Feature Section -->
+    <section class="services-feature" id="services">
+        <div class="container">
+            <div class="feature-content">
+                <h2 class="feature-title">
+                    We save your <span class="rotating-text-wrapper"><span class="rotating-text"
+                            id="rotating-text">windows</span></span>
+                </h2>
+                <p class="feature-subtitle">Professional cleaning that protects and preserves what matters most</p>
+                <a href="#contact" class="btn btn-primary">
+                    <span>Get Your Free Quote</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Ready for a Free Quote?</h2>
+                    <p class="contact-description">
+                        Fill out the form and we'll get back to you within 24 hours with a custom quote for your
+                        property.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Give us a call</span>
+                                <a href="tel:+18025551234" class="contact-value">(802) 555-1234</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Email us</span>
+                                <a href="mailto:info@hydroheroesvt.com" class="contact-value">info@hydroheroesvt.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="contact-label">Service Area</span>
+                                <span class="contact-value">Vermont & Surrounding Areas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="quote-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Smith">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="john@email.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(802) 555-1234">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a service...</option>
+                                <optgroup label="Window Washing" id="windows-options">
+                                    <option value="residential-windows">Residential Windows</option>
+                                    <option value="commercial-windows">Commercial Windows</option>
+                                    <option value="full-property">Full Property Wash</option>
+                                </optgroup>
+                                <optgroup label="Car Detailing" id="detailing-options">
+                                    <option value="express-detail">Express Detail</option>
+                                    <option value="full-detail">Full Detail Package</option>
+                                    <option value="premium-protection">Premium Protection</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell us about your project</label>
+                            <textarea id="message" name="message" rows="4"
+                                placeholder="Describe your property, any special requirements, or questions you have..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Get My Free Quote</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Hydro Heroes Logo" class="footer-logo">
+                    <span class="footer-name">HYDRO HEROES</span>
+                    <p class="footer-tagline">Vermont's Premier Cleaning Professionals</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#services">Services</a>
+                    <a href="#how">How It Works</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hydro Heroes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- ElevenLabs Conversational AI Widget -->
+    <elevenlabs-convai agent-id="agent_8401kgfwz5wyet8btd50wg1kpd04"></elevenlabs-convai>
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+</body>
+
+</html>

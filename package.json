@@ -1,0 +1,12 @@
+{
+  "name": "hydroheroesvt",
+  "version": "1.0.0",
+  "description": "Hydro Heroes Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}
