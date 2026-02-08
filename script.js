@@ -65,6 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (windowsServicesGrid) windowsServicesGrid.style.display = 'grid';
                 const comparisonSection = document.getElementById('comparison');
                 if (comparisonSection) comparisonSection.style.display = 'block';
+                // Hide car comparison section
+                const carComparisonSection = document.getElementById('car-comparison');
+                if (carComparisonSection) carComparisonSection.style.display = 'none';
             } else {
                 if (gallerySection) gallerySection.style.display = 'none';
                 if (carGallerySection) carGallerySection.style.display = 'block';
@@ -83,6 +86,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (windowsServicesGrid) windowsServicesGrid.style.display = 'none';
                 const comparisonSection = document.getElementById('comparison');
                 if (comparisonSection) comparisonSection.style.display = 'none';
+                // Show car comparison section
+                const carComparisonSection = document.getElementById('car-comparison');
+                if (carComparisonSection) carComparisonSection.style.display = 'block';
             }
 
             // Reset rotating text to first word of new list
