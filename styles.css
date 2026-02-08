@@ -825,6 +825,101 @@ ul {
     color: var(--gray-500);
 }
 
+/* ===== COLUMNS GALLERY (Vertical Marquee) ===== */
+.columns-gallery-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    overflow: hidden;
+}
+
+.columns-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    height: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+.columns-gallery::before,
+.columns-gallery::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.columns-gallery::before {
+    top: 0;
+    background: linear-gradient(to bottom, #f8fafc 0%, transparent 100%);
+}
+
+.columns-gallery::after {
+    bottom: 0;
+    background: linear-gradient(to top, #ffffff 0%, transparent 100%);
+}
+
+.column-track {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.column-up {
+    animation: scrollUp 25s linear infinite;
+}
+
+.column-down {
+    animation: scrollDown 25s linear infinite;
+}
+
+@keyframes scrollUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes scrollDown {
+    0% {
+        transform: translateY(-50%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Pause all columns when hovering anywhere on the gallery */
+.columns-gallery:hover .column-track {
+    animation-play-state: paused;
+}
+
+.gallery-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+}
+
+.gallery-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.gallery-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-xl);
+}
+
 /* ===== HOW IT WORKS ===== */
 .how-it-works {
     padding: 100px 0;

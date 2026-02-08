@@ -65,9 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (windowsServicesGrid) windowsServicesGrid.style.display = 'grid';
                 const comparisonSection = document.getElementById('comparison');
                 if (comparisonSection) comparisonSection.style.display = 'block';
-                // Hide car comparison section
+                // Hide car comparison section and columns gallery
                 const carComparisonSection = document.getElementById('car-comparison');
                 if (carComparisonSection) carComparisonSection.style.display = 'none';
+                const columnsGallery = document.getElementById('columns-gallery');
+                if (columnsGallery) columnsGallery.style.display = 'none';
                 // Add windows hero background, remove detailing
                 const heroSection = document.getElementById('hero-windows');
                 if (heroSection) {
@@ -92,9 +94,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (windowsServicesGrid) windowsServicesGrid.style.display = 'none';
                 const comparisonSection = document.getElementById('comparison');
                 if (comparisonSection) comparisonSection.style.display = 'none';
-                // Show car comparison section
+                // Show car comparison section and columns gallery
                 const carComparisonSection = document.getElementById('car-comparison');
                 if (carComparisonSection) carComparisonSection.style.display = 'block';
+                const columnsGallery = document.getElementById('columns-gallery');
+                if (columnsGallery) columnsGallery.style.display = 'block';
                 // Switch to detailing hero background
                 const heroSection = document.getElementById('hero-windows');
                 if (heroSection) {
