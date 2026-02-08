@@ -68,9 +68,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Hide car comparison section
                 const carComparisonSection = document.getElementById('car-comparison');
                 if (carComparisonSection) carComparisonSection.style.display = 'none';
-                // Add windows hero background
+                // Add windows hero background, remove detailing
                 const heroSection = document.getElementById('hero-windows');
-                if (heroSection) heroSection.classList.add('windows-hero');
+                if (heroSection) {
+                    heroSection.classList.add('windows-hero');
+                    heroSection.classList.remove('detailing-hero');
+                }
             } else {
                 if (gallerySection) gallerySection.style.display = 'none';
                 if (carGallerySection) carGallerySection.style.display = 'block';
@@ -92,9 +95,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Show car comparison section
                 const carComparisonSection = document.getElementById('car-comparison');
                 if (carComparisonSection) carComparisonSection.style.display = 'block';
-                // Remove windows hero background
+                // Switch to detailing hero background
                 const heroSection = document.getElementById('hero-windows');
-                if (heroSection) heroSection.classList.remove('windows-hero');
+                if (heroSection) {
+                    heroSection.classList.remove('windows-hero');
+                    heroSection.classList.add('detailing-hero');
+                }
             }
 
             // Reset rotating text to first word of new list
