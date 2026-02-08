@@ -875,6 +875,12 @@ a.contact-value:hover {
     color: var(--primary);
 }
 
+.form-group label .optional {
+    font-weight: 400;
+    color: var(--gray-400);
+    font-size: 0.8rem;
+}
+
 .form-group input,
 .form-group select,
 .form-group textarea {
