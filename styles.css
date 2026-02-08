@@ -451,15 +451,16 @@ ul {
     height: 120px;
 }
 
-/* ===== SERVICES GRID (Inside Gallery) ===== */
+/* ===== SERVICES GRID ===== */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
 
-.gallery-services {
-    margin: 32px 0;
+.feature-services {
+    margin: 40px auto;
+    max-width: 900px;
 }
 
 .service-card-image {
