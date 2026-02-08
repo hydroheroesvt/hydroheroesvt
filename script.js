@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
             toggleButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
+            // Scroll to top of page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
             // Update content with animation
             updateContent(service);
         });
@@ -70,12 +73,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (carComparisonSection) carComparisonSection.style.display = 'none';
                 const columnsGallery = document.getElementById('columns-gallery');
                 if (columnsGallery) columnsGallery.style.display = 'none';
+                // Show windows columns gallery
+                const windowsColumnsGallery = document.getElementById('windows-columns-gallery');
+                if (windowsColumnsGallery) windowsColumnsGallery.style.display = 'block';
                 // Add windows hero background, remove detailing
                 const heroSection = document.getElementById('hero-windows');
                 if (heroSection) {
                     heroSection.classList.add('windows-hero');
                     heroSection.classList.remove('detailing-hero');
                 }
+
+                // Update quote button URLs for windows
+                updateQuoteLinks('windows');
             } else {
                 if (gallerySection) gallerySection.style.display = 'none';
                 if (carGallerySection) carGallerySection.style.display = 'block';
@@ -99,6 +108,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (carComparisonSection) carComparisonSection.style.display = 'block';
                 const columnsGallery = document.getElementById('columns-gallery');
                 if (columnsGallery) columnsGallery.style.display = 'block';
+                // Hide windows columns gallery
+                const windowsColumnsGallery = document.getElementById('windows-columns-gallery');
+                if (windowsColumnsGallery) windowsColumnsGallery.style.display = 'none';
                 // Switch to detailing hero background
                 const heroSection = document.getElementById('hero-windows');
                 if (heroSection) {
@@ -106,6 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     heroSection.classList.add('detailing-hero');
                 }
             }
+
+            // Update quote button URLs based on active service
+            updateQuoteLinks(service);
 
             // Reset rotating text to first word of new list
             currentWordIndex = 0;
@@ -126,6 +141,16 @@ document.addEventListener('DOMContentLoaded', function () {
     heroTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     heroSubtitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
+    // Function to update all quote button URLs based on active service
+    function updateQuoteLinks(service) {
+        const quoteUrl = service === 'detailing' ? 'quote.html?service=detailing' : 'quote.html';
+
+        // Update all quote links on the page
+        document.querySelectorAll('a[href^="quote.html"]').forEach(link => {
+            link.href = quoteUrl;
+        });
+    }
+
     // Rotating Text Animation - different words for each service
     const windowsWords = ['windows', 'tracks', 'sills', 'frames', 'screens', 'skylights', 'gutters'];
     const detailingWords = ['paint', 'wheels', 'seats', 'dashboard', 'floormats', 'carpet', 'windows'];
@@ -145,75 +170,77 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Start rotating every 2 seconds
+    // Start rotating every 1.5 seconds
     if (document.getElementById('rotating-text')) {
-        setInterval(rotateText, 2000);
+        setInterval(rotateText, 1500);
     }
 
-    // Form submission handler
+    // Form submission handler (only if form exists on page)
     const quoteForm = document.getElementById('quote-form');
 
-    quoteForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
+    if (quoteForm) {
+        quoteForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-        // Get form data
-        const formData = new FormData(this);
+            // Get form data
+            const formData = new FormData(this);
 
-        // Get all checked services
-        const services = [];
-        this.querySelectorAll('input[name="services"]:checked').forEach(cb => {
-            services.push(cb.value);
-        });
-
-        const data = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            phone: formData.get('phone'),
-            address: formData.get('address'),
-            services: services.join(', '),
-            message: formData.get('message')
-        };
-
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-
-        // Show loading state
-        submitBtn.innerHTML = '<span>Sending...</span>';
-        submitBtn.disabled = true;
-
-        try {
-            const response = await fetch('/api/send-quote', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
+            // Get all checked services
+            const services = [];
+            this.querySelectorAll('input[name="services"]:checked').forEach(cb => {
+                services.push(cb.value);
             });
 
-            if (response.ok) {
-                // Success
-                submitBtn.innerHTML = '<span>✓ Quote Requested!</span>';
-                submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
-                this.reset();
-            } else {
-                // Error from server
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                address: formData.get('address'),
+                services: services.join(', '),
+                message: formData.get('message')
+            };
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            // Show loading state
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/send-quote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    // Success
+                    submitBtn.innerHTML = '<span>✓ Quote Requested!</span>';
+                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
+                    this.reset();
+                } else {
+                    // Error from server
+                    submitBtn.innerHTML = '<span>✕ Error - Try Again</span>';
+                    submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
+                }
+            } catch (error) {
+                // Network error
+                console.error('Form submission error:', error);
                 submitBtn.innerHTML = '<span>✕ Error - Try Again</span>';
                 submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
             }
-        } catch (error) {
-            // Network error
-            console.error('Form submission error:', error);
-            submitBtn.innerHTML = '<span>✕ Error - Try Again</span>';
-            submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
-        }
 
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.style.background = '';
-            submitBtn.disabled = false;
-        }, 3000);
-    });
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+            }, 3000);
+        });
+    }
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

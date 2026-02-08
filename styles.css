@@ -180,7 +180,7 @@ ul {
 }
 
 .hero.windows-hero {
-    background: url('images/hero_windows.jpg') center center / cover no-repeat;
+    background: url('images/hero_windows.jpg') right center / cover no-repeat;
 }
 
 .hero.detailing-hero {
@@ -204,10 +204,7 @@ ul {
 }
 
 .hero-particles {
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
+    display: none;
 }
 
 .hero-container {

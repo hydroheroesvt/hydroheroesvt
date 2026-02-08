@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Free Quote | Hydro Heroes</title>
+    <meta name="description"
+        content="Request a free quote from Hydro Heroes for professional window washing and car detailing services in Vermont.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Quote Page Specific Styles */
+        .quote-page {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            padding-top: 120px;
+            padding-bottom: 60px;
+        }
+
+        .quote-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .quote-header {
+            text-align: center;
+            margin-bottom: 48px;
+            color: var(--white);
+        }
+
+        .quote-header .section-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+
+        .quote-header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .quote-header p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quote-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 48px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 48px;
+        }
+
+        .quote-info {
+            padding-right: 24px;
+            border-right: 1px solid var(--gray-200);
+        }
+
+        .quote-info h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+
+        .quote-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .quote-contact-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            flex-shrink: 0;
+        }
+
+        .quote-contact-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        .quote-contact-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .quote-contact-label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .quote-contact-value {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .quote-contact-value a {
+            color: var(--primary);
+        }
+
+        .quote-contact-value a:hover {
+            color: var(--accent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white);
+            font-weight: 500;
+            margin-bottom: 24px;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+
+        .back-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .quote-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-info {
+                padding-right: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--gray-200);
+                padding-bottom: 24px;
+            }
+
+            .quote-card {
+                padding: 32px 24px;
+            }
+        }
+
+        /* Select dropdown styling */
+        .contact-form select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-family: var(--font-family);
+            font-size: 1rem;
+            color: var(--gray-700);
+            background: var(--white);
+            transition: var(--transition);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .contact-form select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 158, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Hydro Heroes Logo">
+                <span class="logo-text">HYDRO HEROES</span>
+            </a>
+
+            <!-- Service Toggle -->
+            <div class="service-toggle">
+                <button class="toggle-btn active" data-service="windows" id="toggle-windows">
+                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="12" y1="3" x2="12" y2="21" />
+                    </svg>
+                    Window Washing
+                </button>
+                <button class="toggle-btn" data-service="detailing" id="toggle-detailing">
+                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
+                        <line x1="9" y1="17" x2="15" y2="17" />
+                        <path d="M5 6l7 0" />
+                    </svg>
+                    Car Detailing
+                </button>
+            </div>
+
+            <a href="index.html" class="nav-cta">Back to Home</a>
+        </div>
+    </nav>
+
+    <!-- Quote Page Content -->
+    <main class="quote-page">
+        <div class="quote-container">
+            <a href="index.html" class="back-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                Back to Home
+            </a>
+
+            <div class="quote-header">
+                <span class="section-tag">Free Estimate</span>
+                <h1>Get Your Free Quote</h1>
+                <p>Fill out the form below and we'll get back to you within 24 hours with a custom quote for your
+                    property.</p>
+            </div>
+
+            <div class="quote-card">
+                <div class="quote-grid">
+                    <div class="quote-info">
+                        <h3>Contact Information</h3>
+                        <div class="quote-contact-item">
+                            <div class="quote-contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+                                </svg>
+                            </div>
+                            <div class="quote-contact-text">
+                                <span class="quote-contact-label">Give us a call</span>
+                                <span class="quote-contact-value"><a href="tel:+18023592336">(802) 359-2336</a></span>
+                            </div>
+                        </div>
+                        <div class="quote-contact-item">
+                            <div class="quote-contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                            </div>
+                            <div class="quote-contact-text">
+                                <span class="quote-contact-label">Email us</span>
+                                <span class="quote-contact-value"><a
+                                        href="mailto:hydroheroesvt@gmail.com">hydroheroesvt@gmail.com</a></span>
+                            </div>
+                        </div>
+                        <div class="quote-contact-item">
+                            <div class="quote-contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </div>
+                            <div class="quote-contact-text">
+                                <span class="quote-contact-label">Service Area</span>
+                                <span class="quote-contact-value">Upper Valley</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quote-form-wrapper">
+                        <form class="contact-form" id="quote-form">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required placeholder="John Smith">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" required placeholder="john@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+                                    <input type="tel" id="phone" name="phone" placeholder="(802) 555-1234">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="street">Street Address</label>
+                                <input type="text" id="street" name="street" required placeholder="123 Main St">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City / Town</label>
+                                    <input type="text" id="city" name="city" required placeholder="Burlington">
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    <select id="state" name="state" required>
+                                        <option value="">Select state</option>
+                                        <option value="VT" selected>Vermont</option>
+                                        <option value="NH">New Hampshire</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Services Needed</label>
+                                <div class="service-checkboxes">
+                                    <div class="checkbox-group" id="windows-checkboxes">
+                                        <span class="checkbox-group-label">Window Washing</span>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Exterior Windows">
+                                            <span class="checkmark"></span>
+                                            Exterior Windows
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Interior Windows">
+                                            <span class="checkmark"></span>
+                                            Interior Windows
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Skylights">
+                                            <span class="checkmark"></span>
+                                            Skylights
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Screen Cleaning">
+                                            <span class="checkmark"></span>
+                                            Screen Cleaning
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Gutter Cleaning">
+                                            <span class="checkmark"></span>
+                                            Gutter Cleaning
+                                        </label>
+                                    </div>
+                                    <div class="checkbox-group" id="detailing-checkboxes" style="display: none;">
+                                        <span class="checkbox-group-label">Car Detailing</span>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Exterior Detail">
+                                            <span class="checkmark"></span>
+                                            Exterior Detail
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Interior Detail">
+                                            <span class="checkmark"></span>
+                                            Interior Detail
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Spray Wax">
+                                            <span class="checkmark"></span>
+                                            Spray Wax
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" name="services" value="Pet Hair Removal">
+                                            <span class="checkmark"></span>
+                                            Pet Hair Removal
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Tell us about your project</label>
+                                <textarea id="message" name="message" rows="4"
+                                    placeholder="Describe your property, any special requirements, or questions you have..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <span>Get My Free Quote</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Hydro Heroes Logo" class="footer-logo">
+                    <span class="footer-name">HYDRO HEROES</span>
+                    <p class="footer-tagline">Vermont's Premier Cleaning Professionals</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#services">Services</a>
+                    <a href="index.html#how">How It Works</a>
+                    <a href="index.html">Home</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hydro Heroes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Service toggle for quote page
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleWindows = document.getElementById('toggle-windows');
+            const toggleDetailing = document.getElementById('toggle-detailing');
+            const windowsCheckboxes = document.getElementById('windows-checkboxes');
+            const detailingCheckboxes = document.getElementById('detailing-checkboxes');
+
+            // Check URL parameter for initial service
+            const urlParams = new URLSearchParams(window.location.search);
+            const service = urlParams.get('service');
+
+            if (service === 'detailing') {
+                toggleDetailing.classList.add('active');
+                toggleWindows.classList.remove('active');
+                windowsCheckboxes.style.display = 'none';
+                detailingCheckboxes.style.display = 'block';
+            }
+
+            toggleWindows.addEventListener('click', function () {
+                toggleWindows.classList.add('active');
+                toggleDetailing.classList.remove('active');
+                windowsCheckboxes.style.display = 'block';
+                detailingCheckboxes.style.display = 'none';
+            });
+
+            toggleDetailing.addEventListener('click', function () {
+                toggleDetailing.classList.add('active');
+                toggleWindows.classList.remove('active');
+                windowsCheckboxes.style.display = 'none';
+                detailingCheckboxes.style.display = 'block';
+            });
+
+            // Form submission
+            const quoteForm = document.getElementById('quote-form');
+            if (quoteForm) {
+                quoteForm.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const formData = new FormData(quoteForm);
+                    const fullAddress = `${formData.get('street')}, ${formData.get('city')}, ${formData.get('state')}`;
+                    const data = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone') || 'Not provided',
+                        address: fullAddress,
+                        services: formData.getAll('services').join(', ') || 'Not specified',
+                        message: formData.get('message') || 'No additional details'
+                    };
+
+                    const submitBtn = quoteForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<span>Sending...</span>';
+                    submitBtn.disabled = true;
+
+                    try {
+                        const response = await fetch('/api/send-quote', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        });
+
+                        if (response.ok) {
+                            submitBtn.innerHTML = '<span>✓ Quote Request Sent!</span>';
+                            submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
+                            quoteForm.reset();
+
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalText;
+                                submitBtn.style.background = '';
+                                submitBtn.disabled = false;
+                            }, 3000);
+                        } else {
+                            throw new Error('Failed to send');
+                        }
+                    } catch (error) {
+                        submitBtn.innerHTML = '<span>Error - Please call us</span>';
+                        submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
+
+                        setTimeout(() => {
+                            submitBtn.innerHTML = originalText;
+                            submitBtn.style.background = '';
+                            submitBtn.disabled = false;
+                        }, 3000);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- ElevenLabs Conversational AI Widget -->
+    <elevenlabs-convai agent-id="agent_8401kgfwz5wyet8btd50wg1kpd04"></elevenlabs-convai>
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+</body>
+
+</html>
