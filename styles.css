@@ -354,6 +354,28 @@ ul {
     align-items: center;
 }
 
+.windows-hero .hero-visual {
+    display: none;
+}
+
+.windows-hero .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.windows-hero .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.windows-hero .hero-ctas {
+    justify-content: center;
+}
+
+.windows-hero .hero-trust {
+    justify-content: center;
+}
+
 .hero-image-container {
     position: relative;
     width: 400px;
