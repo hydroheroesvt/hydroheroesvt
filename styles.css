@@ -541,7 +541,12 @@ ul {
     object-fit: cover;
 }
 
+.comparison-after {
+    z-index: 1;
+}
+
 .comparison-before {
+    z-index: 2;
     clip-path: inset(0 50% 0 0);
 }
 
