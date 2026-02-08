@@ -911,6 +911,75 @@ a.contact-value:hover {
     min-height: 120px;
 }
 
+/* Service Checkboxes */
+.service-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-group {
+    background: var(--off-white);
+    border-radius: var(--radius);
+    padding: 16px;
+}
+
+.checkbox-group-label {
+    display: block;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    transition: var(--transition);
+}
+
+.checkbox-item:hover {
+    color: var(--primary);
+}
+
+.checkbox-item input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-item .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gray-300);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.checkbox-item input[type="checkbox"]:checked+.checkmark {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkbox-item input[type="checkbox"]:checked+.checkmark::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.checkbox-item input[type="checkbox"]:checked~* {
+    color: var(--primary);
+    font-weight: 500;
+}
+
 .btn-full {
     width: 100%;
     justify-content: center;

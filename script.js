@@ -51,10 +51,28 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (gallerySection) gallerySection.style.display = 'block';
                 if (carGallerySection) carGallerySection.style.display = 'none';
                 currentWords = windowsWords;
+                // Toggle checkbox groups
+                const windowsCheckboxes = document.getElementById('windows-checkboxes');
+                const detailingCheckboxes = document.getElementById('detailing-checkboxes');
+                if (windowsCheckboxes) windowsCheckboxes.style.display = 'block';
+                if (detailingCheckboxes) {
+                    detailingCheckboxes.style.display = 'none';
+                    // Clear detailing checkboxes
+                    detailingCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                }
             } else {
                 if (gallerySection) gallerySection.style.display = 'none';
                 if (carGallerySection) carGallerySection.style.display = 'block';
                 currentWords = detailingWords;
+                // Toggle checkbox groups
+                const windowsCheckboxes = document.getElementById('windows-checkboxes');
+                const detailingCheckboxes = document.getElementById('detailing-checkboxes');
+                if (detailingCheckboxes) detailingCheckboxes.style.display = 'block';
+                if (windowsCheckboxes) {
+                    windowsCheckboxes.style.display = 'none';
+                    // Clear windows checkboxes
+                    windowsCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                }
             }
 
             // Reset rotating text to first word of new list
@@ -108,7 +126,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Get form data
         const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
+
+        // Get all checked services
+        const services = [];
+        this.querySelectorAll('input[name="services"]:checked').forEach(cb => {
+            services.push(cb.value);
+        });
+
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            address: formData.get('address'),
+            services: services.join(', '),
+            message: formData.get('message')
+        };
 
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;

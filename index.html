@@ -429,20 +429,60 @@
                                 placeholder="123 Main St, Burlington, VT 05401">
                         </div>
                         <div class="form-group">
-                            <label for="service">Service Needed</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service...</option>
-                                <optgroup label="Window Washing" id="windows-options">
-                                    <option value="residential-windows">Residential Windows</option>
-                                    <option value="commercial-windows">Commercial Windows</option>
-                                    <option value="full-property">Full Property Wash</option>
-                                </optgroup>
-                                <optgroup label="Car Detailing" id="detailing-options">
-                                    <option value="express-detail">Express Detail</option>
-                                    <option value="full-detail">Full Detail Package</option>
-                                    <option value="premium-protection">Premium Protection</option>
-                                </optgroup>
-                            </select>
+                            <label>Services Needed</label>
+                            <div class="service-checkboxes">
+                                <div class="checkbox-group" id="windows-checkboxes">
+                                    <span class="checkbox-group-label">Window Washing</span>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Exterior Windows">
+                                        <span class="checkmark"></span>
+                                        Exterior Windows
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Interior Windows">
+                                        <span class="checkmark"></span>
+                                        Interior Windows
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Skylights">
+                                        <span class="checkmark"></span>
+                                        Skylights
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Screen Cleaning">
+                                        <span class="checkmark"></span>
+                                        Screen Cleaning
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Gutter Cleaning">
+                                        <span class="checkmark"></span>
+                                        Gutter Cleaning
+                                    </label>
+                                </div>
+                                <div class="checkbox-group" id="detailing-checkboxes" style="display: none;">
+                                    <span class="checkbox-group-label">Car Detailing</span>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Exterior Detail">
+                                        <span class="checkmark"></span>
+                                        Exterior Detail
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Interior Detail">
+                                        <span class="checkmark"></span>
+                                        Interior Detail
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Spray Wax">
+                                        <span class="checkmark"></span>
+                                        Spray Wax
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" name="services" value="Pet Hair Removal">
+                                        <span class="checkmark"></span>
+                                        Pet Hair Removal
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="message">Tell us about your project</label>

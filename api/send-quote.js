@@ -5,10 +5,10 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { name, email, phone, address, service, message } = req.body;
+        const { name, email, phone, address, services, message } = req.body;
 
         // Validate required fields
-        if (!name || !email || !address || !service) {
+        if (!name || !email || !address || !services) {
             return res.status(400).json({ error: 'Missing required fields' });
         }
 
@@ -45,8 +45,8 @@ export default async function handler(req, res) {
                             <td style="padding: 10px;">${address}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px; background: #f8fafc; font-weight: bold;">Service:</td>
-                            <td style="padding: 10px; background: #f8fafc; color: #3b9eff; font-weight: bold;">${service}</td>
+                            <td style="padding: 10px; background: #f8fafc; font-weight: bold;">Services:</td>
+                            <td style="padding: 10px; background: #f8fafc; color: #3b9eff; font-weight: bold;">${services}</td>
                         </tr>
                     </table>
                     
