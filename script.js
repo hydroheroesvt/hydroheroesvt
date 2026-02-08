@@ -60,6 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Clear detailing checkboxes
                     detailingCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
                 }
+                // Show windows services grid
+                const windowsServicesGrid = document.getElementById('windows-services-grid');
+                if (windowsServicesGrid) windowsServicesGrid.style.display = 'grid';
             } else {
                 if (gallerySection) gallerySection.style.display = 'none';
                 if (carGallerySection) carGallerySection.style.display = 'block';
@@ -73,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Clear windows checkboxes
                     windowsCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
                 }
+                // Hide windows services grid on detailing page
+                const windowsServicesGrid = document.getElementById('windows-services-grid');
+                if (windowsServicesGrid) windowsServicesGrid.style.display = 'none';
             }
 
             // Reset rotating text to first word of new list
