@@ -60,9 +60,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Clear detailing checkboxes
                     detailingCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
                 }
-                // Show windows services grid
+                // Show windows services grid and comparison section
                 const windowsServicesGrid = document.getElementById('windows-services-grid');
                 if (windowsServicesGrid) windowsServicesGrid.style.display = 'grid';
+                const comparisonSection = document.getElementById('comparison');
+                if (comparisonSection) comparisonSection.style.display = 'block';
             } else {
                 if (gallerySection) gallerySection.style.display = 'none';
                 if (carGallerySection) carGallerySection.style.display = 'block';
@@ -76,9 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Clear windows checkboxes
                     windowsCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
                 }
-                // Hide windows services grid on detailing page
+                // Hide windows services grid and comparison section on detailing page
                 const windowsServicesGrid = document.getElementById('windows-services-grid');
                 if (windowsServicesGrid) windowsServicesGrid.style.display = 'none';
+                const comparisonSection = document.getElementById('comparison');
+                if (comparisonSection) comparisonSection.style.display = 'none';
             }
 
             // Reset rotating text to first word of new list
@@ -237,5 +241,25 @@ document.addEventListener('DOMContentLoaded', function () {
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
+    });
+
+    // Comparison Slider Functionality
+    document.querySelectorAll('.comparison-slider').forEach(slider => {
+        const range = slider.querySelector('.comparison-range');
+        const beforeImage = slider.querySelector('.comparison-before');
+        const handle = slider.querySelector('.comparison-handle');
+
+        function updateSlider(value) {
+            const percent = 100 - value;
+            beforeImage.style.clipPath = `inset(0 ${percent}% 0 0)`;
+            handle.style.left = `${value}%`;
+        }
+
+        range.addEventListener('input', (e) => {
+            updateSlider(e.target.value);
+        });
+
+        // Initialize at 50%
+        updateSlider(50);
     });
 });
