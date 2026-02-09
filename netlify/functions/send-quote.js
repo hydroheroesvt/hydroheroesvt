@@ -71,10 +71,13 @@ export const handler = async (event, context) => {
         });
 
         if (encoding.error) {
-            console.error('Resend error:', encoding.error);
+            console.error('Resend API Error:', encoding.error);
             return {
                 statusCode: 500,
-                body: JSON.stringify({ error: 'Failed to send email' }),
+                body: JSON.stringify({
+                    error: 'Failed to send email via Resend',
+                    details: encoding.error.message
+                }),
             };
         }
 
@@ -84,10 +87,14 @@ export const handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error('Server error:', error);
+        console.error('Server function error:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Internal server error' }),
+            body: JSON.stringify({
+                error: 'Internal server function error',
+                details: error.message,
+                stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+            }),
         };
     }
 };
