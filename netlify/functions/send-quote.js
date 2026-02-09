@@ -1,23 +1,31 @@
-export default async function handler(req, res) {
+import { Resend } from 'resend';
+
+// Netlify Function handler
+export const handler = async (event, context) => {
     // Only allow POST requests
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
+    if (event.httpMethod !== 'POST') {
+        return {
+            statusCode: 405,
+            body: JSON.stringify({ error: 'Method not allowed' }),
+        };
     }
 
     try {
-        const { name, email, phone, address, services, message } = req.body;
+        const { name, email, phone, address, services, message } = JSON.parse(event.body);
 
         // Validate required fields
         if (!name || !email || !address || !services) {
-            return res.status(400).json({ error: 'Missing required fields' });
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'Missing required fields' }),
+            };
         }
 
-        // Dynamic import for Resend
-        const { Resend } = await import('resend');
+        // Initialize Resend
         const resend = new Resend(process.env.RESEND_API_KEY);
 
         // Send email notification
-        const { data, error } = await resend.emails.send({
+        const encoding = await resend.emails.send({
             from: 'Hydro Heroes <onboarding@resend.dev>',
             to: 'hydroheroesvt@gmail.com',
             subject: `New Quote Request from ${name}`,
@@ -56,21 +64,30 @@ export default async function handler(req, res) {
                     </div>
                     
                     <p style="color: #64748b; font-size: 12px; margin-top: 30px;">
-                        This email was sent from the Hydro Heroes website contact form.
+                        This email was sent from the Hydro Heroes website contact form via Netlify.
                     </p>
                 </div>
             `
         });
 
-        if (error) {
-            console.error('Resend error:', error);
-            return res.status(500).json({ error: 'Failed to send email' });
+        if (encoding.error) {
+            console.error('Resend error:', encoding.error);
+            return {
+                statusCode: 500,
+                body: JSON.stringify({ error: 'Failed to send email' }),
+            };
         }
 
-        return res.status(200).json({ success: true, message: 'Email sent successfully' });
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ success: true, message: 'Email sent successfully' }),
+        };
 
     } catch (error) {
         console.error('Server error:', error);
-        return res.status(500).json({ error: 'Internal server error' });
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Internal server error' }),
+        };
     }
-}
+};
