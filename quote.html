@@ -190,6 +190,73 @@
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(59, 158, 255, 0.1);
         }
+
+        /* Service Category Styles */
+        .service-category {
+            margin-bottom: 20px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .category-checkbox {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: var(--gray-50);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-checkbox:hover {
+            background: var(--gray-100);
+        }
+
+        .category-checkbox input {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            accent-color: var(--primary);
+        }
+
+        .category-label {
+            font-weight: 600;
+            color: var(--gray-800);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-label svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary);
+        }
+
+        .sub-services {
+            padding: 16px 16px 16px 48px;
+            border-top: 1px solid var(--gray-200);
+            background: var(--white);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-helper {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
     </style>
 </head>
 
@@ -202,27 +269,7 @@
                 <span class="logo-text">HYDRO HEROES</span>
             </a>
 
-            <!-- Service Toggle -->
-            <div class="service-toggle">
-                <button class="toggle-btn active" data-service="windows" id="toggle-windows">
-                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="12" y1="3" x2="12" y2="21" />
-                    </svg>
-                    Window Washing
-                </button>
-                <button class="toggle-btn" data-service="detailing" id="toggle-detailing">
-                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
-                        <line x1="9" y1="17" x2="15" y2="17" />
-                        <path d="M5 6l7 0" />
-                    </svg>
-                    Car Detailing
-                </button>
-            </div>
+            <!-- Toggle buttons removed -->
 
             <a href="index.html" class="nav-cta">Back to Home</a>
         </div>
@@ -324,57 +371,92 @@
                             </div>
                             <div class="form-group">
                                 <label>Services Needed</label>
-                                <div class="service-checkboxes">
-                                    <div class="checkbox-group" id="windows-checkboxes">
-                                        <span class="checkbox-group-label">Window Washing</span>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Exterior Windows">
-                                            <span class="checkmark"></span>
-                                            Exterior Windows
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Interior Windows">
-                                            <span class="checkmark"></span>
-                                            Interior Windows
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Skylights">
-                                            <span class="checkmark"></span>
-                                            Skylights
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Screen Cleaning">
-                                            <span class="checkmark"></span>
-                                            Screen Cleaning
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Gutter Cleaning">
-                                            <span class="checkmark"></span>
-                                            Gutter Cleaning
-                                        </label>
+                                <p class="form-helper">Select the main services you're interested in:</p>
+
+                                <!-- Window Washing Category -->
+                                <div class="service-category">
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat-windows" name="categories" value="windows">
+                                        <span class="category-label">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                                <line x1="3" y1="12" x2="21" y2="12" />
+                                                <line x1="12" y1="3" x2="12" y2="21" />
+                                            </svg>
+                                            Window Washing
+                                        </span>
+                                    </label>
+
+                                    <div class="sub-services" id="windows-options" style="display: none;">
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Exterior Windows">
+                                                <span class="checkmark"></span>
+                                                Exterior Windows
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Interior Windows">
+                                                <span class="checkmark"></span>
+                                                Interior Windows
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Skylights">
+                                                <span class="checkmark"></span>
+                                                Skylights
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Screen Cleaning">
+                                                <span class="checkmark"></span>
+                                                Screen Cleaning
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Gutter Cleaning">
+                                                <span class="checkmark"></span>
+                                                Gutter Cleaning
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="checkbox-group" id="detailing-checkboxes" style="display: none;">
-                                        <span class="checkbox-group-label">Car Detailing</span>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Exterior Detail">
-                                            <span class="checkmark"></span>
-                                            Exterior Detail
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Interior Detail">
-                                            <span class="checkmark"></span>
-                                            Interior Detail
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Spray Wax">
-                                            <span class="checkmark"></span>
-                                            Spray Wax
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Pet Hair Removal">
-                                            <span class="checkmark"></span>
-                                            Pet Hair Removal
-                                        </label>
+                                </div>
+
+                                <!-- Car Detailing Category -->
+                                <div class="service-category">
+                                    <label class="category-checkbox">
+                                        <input type="checkbox" id="cat-detailing" name="categories" value="detailing">
+                                        <span class="category-label">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                                <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
+                                                <line x1="9" y1="17" x2="15" y2="17" />
+                                                <path d="M5 6l7 0" />
+                                            </svg>
+                                            Car Detailing
+                                        </span>
+                                    </label>
+
+                                    <div class="sub-services" id="detailing-options" style="display: none;">
+                                        <div class="checkbox-group">
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Exterior Detail">
+                                                <span class="checkmark"></span>
+                                                Exterior Detail
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Interior Detail">
+                                                <span class="checkmark"></span>
+                                                Interior Detail
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Spray Wax">
+                                                <span class="checkmark"></span>
+                                                Spray Wax
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" name="services" value="Pet Hair Removal">
+                                                <span class="checkmark"></span>
+                                                Pet Hair Removal
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -432,37 +514,39 @@
     </footer>
 
     <script>
-        // Service toggle for quote page
+        // Service category toggle logic
         document.addEventListener('DOMContentLoaded', function () {
-            const toggleWindows = document.getElementById('toggle-windows');
-            const toggleDetailing = document.getElementById('toggle-detailing');
-            const windowsCheckboxes = document.getElementById('windows-checkboxes');
-            const detailingCheckboxes = document.getElementById('detailing-checkboxes');
+            const catWindows = document.getElementById('cat-windows');
+            const catDetailing = document.getElementById('cat-detailing');
+            const windowsOptions = document.getElementById('windows-options');
+            const detailingOptions = document.getElementById('detailing-options');
 
-            // Check URL parameter for initial service
+            // Function to toggle options visibility
+            function toggleOptions(checkbox, optionsElement) {
+                if (checkbox.checked) {
+                    optionsElement.style.display = 'block';
+                } else {
+                    optionsElement.style.display = 'none';
+                    // Uncheck sub-options when hiding
+                    optionsElement.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                }
+            }
+
+            // Event listeners
+            catWindows.addEventListener('change', () => toggleOptions(catWindows, windowsOptions));
+            catDetailing.addEventListener('change', () => toggleOptions(catDetailing, detailingOptions));
+
+            // Check URL parameter for initial service selection
             const urlParams = new URLSearchParams(window.location.search);
             const service = urlParams.get('service');
 
-            if (service === 'detailing') {
-                toggleDetailing.classList.add('active');
-                toggleWindows.classList.remove('active');
-                windowsCheckboxes.style.display = 'none';
-                detailingCheckboxes.style.display = 'block';
+            if (service === 'windows') {
+                catWindows.checked = true;
+                toggleOptions(catWindows, windowsOptions);
+            } else if (service === 'detailing') {
+                catDetailing.checked = true;
+                toggleOptions(catDetailing, detailingOptions);
             }
-
-            toggleWindows.addEventListener('click', function () {
-                toggleWindows.classList.add('active');
-                toggleDetailing.classList.remove('active');
-                windowsCheckboxes.style.display = 'block';
-                detailingCheckboxes.style.display = 'none';
-            });
-
-            toggleDetailing.addEventListener('click', function () {
-                toggleDetailing.classList.add('active');
-                toggleWindows.classList.remove('active');
-                windowsCheckboxes.style.display = 'none';
-                detailingCheckboxes.style.display = 'block';
-            });
 
             // Form submission
             const quoteForm = document.getElementById('quote-form');
