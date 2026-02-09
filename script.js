@@ -191,11 +191,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 services.push(cb.value);
             });
 
+            const street = formData.get('street');
+            const city = formData.get('city');
+            const state = formData.get('state');
+            const fullAddress = `${street}, ${city}, ${state}`;
+
             const data = {
                 name: formData.get('name'),
                 email: formData.get('email'),
                 phone: formData.get('phone'),
-                address: formData.get('address'),
+                address: fullAddress,
                 services: services.join(', '),
                 message: formData.get('message')
             };
