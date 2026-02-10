@@ -2198,10 +2198,12 @@ a.contact-value:hover {
         text-align: left;
     }
 
-    /* Fix Service Grid Layout (2x2) */
+    /* Fix Service Grid Layout (2x2) and spacing */
     .services-grid {
         grid-template-columns: 1fr 1fr;
         max-width: 100%;
         gap: 12px;
+        margin-bottom: 60px;
+        /* Push button down */
     }
 }
