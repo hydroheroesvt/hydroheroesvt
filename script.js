@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const heroTitle = document.getElementById('hero-title');
     const heroSubtitle = document.getElementById('hero-subtitle');
     const aboutTeaserTitle = document.getElementById('about-teaser-title');
+    const aboutTeaserImage = document.getElementById('about-teaser-image');
     const gallerySection = document.getElementById('gallery');
     const carGallerySection = document.getElementById('car-gallery');
 
@@ -14,12 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
         windows: {
             heroTitle: '<span class="title-line">Dirty Windows?</span><span class="title-accent">We Can Fix That.</span>',
             heroSubtitle: 'Professional window washing that brings the sparkle back to your home or business. Crystal clear views, guaranteed satisfaction.',
-            aboutTeaserTitle: 'More Than Just Window Cleaners'
+            aboutTeaserTitle: 'More Than Just Window Cleaners',
+            aboutTeaserImage: 'images/teaser_windows.jpg'
         },
         detailing: {
             heroTitle: '<span class="title-line">Dirty Car?</span><span class="title-accent">We\'ll Make It Shine.</span>',
             heroSubtitle: 'Premium car detailing that makes your vehicle look showroom-ready. From express washes to full ceramic coatings.',
-            aboutTeaserTitle: 'More Than Just Car Detailers'
+            aboutTeaserTitle: 'More Than Just Car Detailers',
+            aboutTeaserImage: 'images/teaser_car.jpg'
         }
     };
 
@@ -52,6 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
             aboutTeaserTitle.style.transform = 'translateY(20px)';
         }
 
+        if (aboutTeaserImage) {
+            aboutTeaserImage.style.opacity = '0';
+            aboutTeaserImage.style.transform = 'scale(0.95)';
+        }
+
         setTimeout(() => {
             // Update content
             heroTitle.innerHTML = content[service].heroTitle;
@@ -61,6 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 aboutTeaserTitle.textContent = content[service].aboutTeaserTitle;
                 aboutTeaserTitle.style.opacity = '1';
                 aboutTeaserTitle.style.transform = 'translateY(0)';
+            }
+
+            if (aboutTeaserImage) {
+                aboutTeaserImage.src = content[service].aboutTeaserImage;
+                aboutTeaserImage.style.opacity = '1';
+                aboutTeaserImage.style.transform = 'scale(1)';
             }
 
             // Toggle gallery visibility
@@ -167,6 +181,9 @@ document.addEventListener('DOMContentLoaded', function () {
     heroSubtitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     if (aboutTeaserTitle) {
         aboutTeaserTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    }
+    if (aboutTeaserImage) {
+        aboutTeaserImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
 
     // ===== TIMELINE ANIMATION (About Page) =====
