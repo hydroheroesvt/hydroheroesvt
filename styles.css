@@ -2241,4 +2241,9 @@ a.contact-value:hover {
         margin-bottom: 60px;
         /* Push button down */
     }
+
+    /* Adjust Detailing Hero Background Position to show people */
+    .hero.detailing-hero {
+        background-position: 75% center !important;
+    }
 }
