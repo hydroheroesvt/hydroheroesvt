@@ -2125,10 +2125,11 @@ a.contact-value:hover {
         padding-top: 100px;
         /* Slightly reduced top padding */
         padding-bottom: 60px;
-        padding-left: 12px;
-        /* Minimal padding */
-        padding-right: 12px;
-        text-align: center !important;
+        padding-left: 20px;
+        /* Standard mobile padding for left align */
+        padding-right: 20px;
+        text-align: left !important;
+        /* Left align everything */
         gap: 24px;
         width: 100%;
         max-width: 100% !important;
@@ -2136,17 +2137,17 @@ a.contact-value:hover {
 
     .windows-hero .hero-container,
     .detailing-hero .hero-container {
-        text-align: center;
+        text-align: left;
     }
 
     .hero-content {
         width: 100%;
         max-width: 100%;
-        margin: 0 auto;
+        margin: 0;
         display: flex;
         flex-direction: column;
-        align-items: stretch;
-        /* Force full width children */
+        align-items: flex-start;
+        /* Align items to start */
     }
 
     .hero-title {
@@ -2155,14 +2156,14 @@ a.contact-value:hover {
         margin-bottom: 12px;
         width: 100%;
         line-height: 1.1;
-        text-align: center;
+        text-align: left;
     }
 
-    /* Force title to flow horizontally */
+    /* Force title to stack as requested */
     .hero-title .title-line,
     .hero-title .title-accent {
-        display: inline !important;
-        margin-right: 6px;
+        display: block !important;
+        margin-right: 0;
     }
 
     .hero-subtitle {
@@ -2171,7 +2172,8 @@ a.contact-value:hover {
         width: 100%;
         max-width: 100%;
         padding: 0;
-        text-align: center;
+        text-align: left;
+        margin-left: 0;
     }
 
     .hero-ctas {
@@ -2181,7 +2183,6 @@ a.contact-value:hover {
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        /* Full width buttons */
     }
 
     .hero-ctas .btn {
@@ -2197,7 +2198,10 @@ a.contact-value:hover {
 
     .windows-hero .hero-trust,
     .detailing-hero .hero-trust {
-        justify-content: center;
+        justify-content: flex-start;
+        /* Left align for trust badges too */
+        margin-left: -8px;
+        /* Offset padding */
     }
 
     /* Ensure background is readable */
