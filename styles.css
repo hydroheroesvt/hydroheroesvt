@@ -1821,3 +1821,111 @@ a.contact-value:hover {
         display: none;
     }
 }
+
+/* ===== ACETERNITY TIMELINE ===== */
+.timeline-container {
+    display: flex;
+    gap: 40px;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-left {
+    flex-shrink: 0;
+    width: 40px;
+    position: relative;
+}
+
+.timeline-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+}
+
+.timeline-line-base {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, var(--gray-200) 10%, var(--gray-200) 90%, transparent 100%);
+}
+
+.timeline-line-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    /* Animated via JS */
+    background: linear-gradient(to bottom, var(--primary), var(--accent));
+    box-shadow: 0 0 10px var(--primary);
+    border-radius: 999px;
+    transition: height 0.1s linear;
+    max-height: 100%;
+}
+
+.timeline-content {
+    flex-grow: 1;
+    padding-bottom: 40px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+    /* Ensure content aligns with dots */
+    padding-top: 5px;
+}
+
+.timeline-dot-wrapper {
+    position: absolute;
+    left: -53px;
+    /* Align with .timeline-left center (40px gap + 13px half-width offset approx) */
+    top: 0;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--white);
+    border: 3px solid var(--gray-300);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.timeline-item.active .timeline-dot {
+    background: var(--primary);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(59, 158, 255, 0.2);
+    transform: scale(1.2);
+}
+
+.timeline-text-content {
+    background: var(--white);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .timeline-container {
+        gap: 20px;
+    }
+
+    .timeline-left {
+        width: 30px;
+    }
+
+    .timeline-dot-wrapper {
+        left: -37px;
+    }
+}

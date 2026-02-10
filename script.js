@@ -149,9 +149,54 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 300);
     }
 
-    // Add transition styles dynamically
     heroTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     heroSubtitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+    // ===== TIMELINE ANIMATION (About Page) =====
+    const timelineContainer = document.querySelector('.timeline-container');
+    const timelineProgress = document.getElementById('timeline-progress');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    if (timelineContainer && timelineProgress) {
+        window.addEventListener('scroll', () => {
+            const containerRect = timelineContainer.getBoundingClientRect();
+            const containerTop = containerRect.top;
+            const containerHeight = containerRect.height;
+            const windowHeight = window.innerHeight;
+
+            // Calculate progress based on how far the container is scrolled
+            // Start filling when container enters via bottom 20% of screen
+            const startOffset = windowHeight * 0.8;
+
+            // If container top is above the start point
+            if (containerTop < startOffset) {
+                // Calculate distance scrolled past the start point
+                const scrolled = startOffset - containerTop;
+
+                // Calculate percentage (clamped 0 to 100%)
+                // We want it to be full when we reach the end of the content
+                let percentage = (scrolled / containerHeight) * 100;
+
+                // Fine-tuning: make it fill slightly faster so it looks connected
+                percentage = Math.min(100, Math.max(0, percentage));
+
+                timelineProgress.style.height = `${percentage}%`;
+            } else {
+                timelineProgress.style.height = '0%';
+            }
+
+            // Highlighting dots
+            timelineItems.forEach(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                // Activate dot when it's in the upper half of screen
+                if (itemTop < windowHeight * 0.6) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        });
+    }
 
     // Function to update all quote button URLs based on active service
     function updateQuoteLinks(service) {
