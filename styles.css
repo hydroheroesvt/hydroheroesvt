@@ -1999,15 +1999,16 @@ a.contact-value:hover {
 /* ===== ACETERNITY TIMELINE ===== */
 .timeline-container {
     display: flex;
-    gap: 40px;
+    gap: 60px;
     position: relative;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
+    padding-left: 20px;
 }
 
 .timeline-left {
     flex-shrink: 0;
-    width: 40px;
+    width: 60px;
     position: relative;
 }
 
@@ -2062,16 +2063,16 @@ a.contact-value:hover {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     /* Ensure content aligns with dots */
     padding-top: 5px;
 }
 
 .timeline-dot-wrapper {
     position: absolute;
-    left: -53px;
-    /* Align with .timeline-left center (40px gap + 13px half-width offset approx) */
-    top: 0;
+    left: -91px;
+    /* 60px gap + 30px half-width of left col + 1px adjust */
+    top: 5px;
     width: 26px;
     height: 26px;
     display: flex;
@@ -2112,5 +2113,71 @@ a.contact-value:hover {
 
     .timeline-dot-wrapper {
         left: -37px;
+    }
+}
+
+/* ===== MOBILE HERO OPTIMIZATIONS ===== */
+@media (max-width: 768px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        padding-top: 120px;
+        padding-bottom: 80px;
+        text-align: center !important;
+        gap: 40px;
+    }
+
+    .windows-hero .hero-container,
+    .detailing-hero .hero-container {
+        text-align: center;
+    }
+
+    .hero-content {
+        grid-column: 1 / -1;
+        max-width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 32px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-ctas {
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+
+    .hero-ctas .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-trust {
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0;
+    }
+
+    .windows-hero .hero-trust,
+    .detailing-hero .hero-trust {
+        justify-content: center;
+    }
+
+    /* Ensure background is readable */
+    .hero-bg {
+        background: linear-gradient(180deg, rgba(10, 61, 98, 0.9) 0%, rgba(45, 106, 159, 0.8) 100%) !important;
     }
 }
