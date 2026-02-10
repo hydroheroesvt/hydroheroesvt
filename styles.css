@@ -1877,7 +1877,7 @@ a.contact-value:hover {
     /* Adding a glow because the snippet beam is a gradient-to-t */
     box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
     border-radius: 999px;
-    transition: height 0.05s linear;
+    transition: height 0.05s linear, opacity 0.1s ease;
     max-height: 100%;
 }
 

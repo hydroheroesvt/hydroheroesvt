@@ -183,10 +183,16 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             // Clamp between 0 and 1
+            // Clamp between 0 and 1
             progress = Math.min(1, Math.max(0, progress));
 
-            // Update height
+            // Calculate opacity: Fade in during the first 10% of the progress
+            let opacity = progress < 0.1 ? progress * 10 : 1;
+            opacity = Math.min(1, Math.max(0, opacity));
+
+            // Update height and opacity
             timelineProgress.style.height = `${progress * 100}%`;
+            timelineProgress.style.opacity = `${opacity}`;
 
             // Highlighting dots
             timelineItems.forEach(item => {
