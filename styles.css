@@ -1683,7 +1683,8 @@ a.contact-value:hover {
 /* ===== SERVICE AREA SECTION ===== */
 .service-area-section {
     padding: 100px 0;
-    background: var(--gray-50);
+    background: #f0f7ff;
+    /* Light blue tint */
 }
 
 .service-area-grid {
