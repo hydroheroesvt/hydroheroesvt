@@ -1861,22 +1861,28 @@ a.contact-value:hover {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 4px;
-    /* Thicker for visibility */
+    width: 2px;
+    /* Revert to thinner beam as per design */
     height: 0%;
     z-index: 5;
-    background-color: #d946ef;
-    /* Fallback solid color (Fuchsia) */
+    background-color: transparent;
+    /* Remove solid fallback to allow transparency effect */
+    /* Aceternity Exact Gradient: Purple(0%) -> Blue(10%) -> Transparent */
     background: linear-gradient(to top,
-            #d946ef 0%,
-            /* Fuchsia */
-            #8b5cf6 40%,
-            /* Violet */
+            #a855f7 0%,
+            #3b82f6 10%,
             transparent 100%);
-    box-shadow: 0 0 20px rgba(217, 70, 239, 0.8);
+    box-shadow: 0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04);
+    /* Subtle shadow from snippet? No, the snippet uses shadow on images. The beam uses: from-purple-500 via-blue-500 */
+    /* Adding a glow because the snippet beam is a gradient-to-t */
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
     border-radius: 999px;
     transition: height 0.05s linear;
     max-height: 100%;
+}
+
+transition: height 0.05s linear;
+max-height: 100%;
 }
 
 .timeline-content {
