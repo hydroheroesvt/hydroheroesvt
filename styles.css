@@ -2197,4 +2197,11 @@ a.contact-value:hover {
         min-width: 120px;
         text-align: left;
     }
+
+    /* Fix Service Grid Layout (2x2) */
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+        max-width: 100%;
+        gap: 12px;
+    }
 }
