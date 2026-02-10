@@ -2122,15 +2122,17 @@ a.contact-value:hover {
         display: flex !important;
         /* Switch to flex to avoid grid constraints */
         flex-direction: column;
-        padding-top: 100px;
-        /* Slightly reduced top padding */
-        padding-bottom: 60px;
+        padding-top: 80px;
+        /* Reduced further to show more bg */
+        padding-bottom: 40px;
+        /* Compact bottom */
         padding-left: 20px;
         /* Standard mobile padding for left align */
         padding-right: 20px;
         text-align: left !important;
         /* Left align everything */
-        gap: 24px;
+        gap: 16px;
+        /* Tighter gap */
         width: 100%;
         max-width: 100% !important;
     }
@@ -2151,9 +2153,11 @@ a.contact-value:hover {
     }
 
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        /* Smaller font to save space */
         /* Slightly smaller to fit more text */
-        margin-bottom: 12px;
+        margin-bottom: 8px;
+        /* Tighter margin */
         width: 100%;
         line-height: 1.1;
         text-align: left;
@@ -2167,8 +2171,9 @@ a.contact-value:hover {
     }
 
     .hero-subtitle {
-        font-size: 1.05rem;
-        margin-bottom: 24px;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        /* Reduced margin */
         width: 100%;
         max-width: 100%;
         padding: 0;
@@ -2179,7 +2184,8 @@ a.contact-value:hover {
     .hero-ctas {
         width: 100%;
         gap: 12px;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
+        /* Reduced margin */
         display: flex;
         flex-direction: column;
         align-items: stretch;
@@ -2204,9 +2210,10 @@ a.contact-value:hover {
         /* Offset padding */
     }
 
-    /* Ensure background is readable */
+    /* Ensure background is readable but visible */
     .hero-bg {
-        background: linear-gradient(180deg, rgba(10, 61, 98, 0.9) 0%, rgba(45, 106, 159, 0.8) 100%) !important;
+        /* Reduced opacity from 0.9/0.8 to 0.75/0.65 to show more image */
+        background: linear-gradient(180deg, rgba(10, 61, 98, 0.75) 0%, rgba(45, 106, 159, 0.65) 100%) !important;
     }
 
     /* Fix Rotating Text wrapping */
