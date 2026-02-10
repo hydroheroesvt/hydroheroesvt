@@ -1859,19 +1859,21 @@ a.contact-value:hover {
 .timeline-line-progress {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 2px;
-    /* Ensure width is explicit */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    /* Thicker for visibility */
     height: 0%;
     z-index: 5;
-    /* Ensure it's above the base line */
-    /* Aceternity "Beam" Effect: High visibility gradient */
+    background-color: #d946ef;
+    /* Fallback solid color (Fuchsia) */
     background: linear-gradient(to top,
-            #A855F7 0%,
-            #3B82F6 40%,
+            #d946ef 0%,
+            /* Fuchsia */
+            #8b5cf6 40%,
+            /* Violet */
             transparent 100%);
-    box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
-    /* Stronger glow */
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.8);
     border-radius: 999px;
     transition: height 0.05s linear;
     max-height: 100%;
