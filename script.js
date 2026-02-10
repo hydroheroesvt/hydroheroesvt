@@ -165,6 +165,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     heroTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     heroSubtitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    if (aboutTeaserTitle) {
+        aboutTeaserTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    }
 
     // ===== TIMELINE ANIMATION (About Page) =====
     const timelineContainer = document.querySelector('.timeline-container');
