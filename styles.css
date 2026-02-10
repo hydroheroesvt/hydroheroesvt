@@ -1860,12 +1860,18 @@ a.contact-value:hover {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 2px;
+    /* Ensure width is explicit */
     height: 0%;
-    /* Animated via JS */
-    /* Aceternity "Beam" Effect: Sharp Purple/Blue Gradient */
-    background: linear-gradient(to top, #A855F7 0%, #3B82F6 20%, transparent 100%);
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    z-index: 5;
+    /* Ensure it's above the base line */
+    /* Aceternity "Beam" Effect: High visibility gradient */
+    background: linear-gradient(to top,
+            #A855F7 0%,
+            #3B82F6 40%,
+            transparent 100%);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.8);
+    /* Stronger glow */
     border-radius: 999px;
     transition: height 0.05s linear;
     max-height: 100%;
