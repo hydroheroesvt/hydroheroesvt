@@ -1,11 +1,4 @@
 {
-    "buildCommand": "npm install",
-    "outputDirectory": "./",
-    "functions": {
-        "api/*.js": {
-            "runtime": "@vercel/node@3.0.0"
-        }
-    },
     "rewrites": [
         {
             "source": "/.netlify/functions/send-quote",
