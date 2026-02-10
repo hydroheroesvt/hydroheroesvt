@@ -1936,12 +1936,11 @@ a.contact-value:hover {
     overflow: hidden;
     box-shadow: var(--shadow-xl);
     aspect-ratio: 4/3;
-    transform: rotate(2deg);
     transition: var(--transition);
 }
 
 .teaser-image:hover {
-    transform: rotate(0deg) scale(1.02);
+    transform: scale(1.02);
 }
 
 .teaser-image img {
