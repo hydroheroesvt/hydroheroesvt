@@ -158,32 +158,35 @@ document.addEventListener('DOMContentLoaded', function () {
     const timelineItems = document.querySelectorAll('.timeline-item');
 
     if (timelineContainer && timelineProgress) {
-        window.addEventListener('scroll', () => {
-            const containerRect = timelineContainer.getBoundingClientRect();
-            const containerTop = containerRect.top;
-            const containerHeight = containerRect.height;
+        const updateTimeline = () => {
+            const rect = timelineContainer.getBoundingClientRect();
             const windowHeight = window.innerHeight;
 
-            // Calculate progress based on how far the container is scrolled
-            // Start filling when container enters via bottom 20% of screen
-            const startOffset = windowHeight * 0.8;
+            // Calculate absolute positions relative to document
+            const elementTop = rect.top + window.scrollY;
+            const elementBottom = elementTop + rect.height;
+            const currentScroll = window.scrollY;
 
-            // If container top is above the start point
-            if (containerTop < startOffset) {
-                // Calculate distance scrolled past the start point
-                const scrolled = startOffset - containerTop;
+            // Trigger points based on user request (Aceternity style)
+            // Start: When element top is 10% down the viewport (appearing at top)
+            const startScroll = elementTop - (windowHeight * 0.1);
+            // End: When element bottom is 50% down the viewport (middle of screen)
+            const endScroll = elementBottom - (windowHeight * 0.5);
 
-                // Calculate percentage (clamped 0 to 100%)
-                // We want it to be full when we reach the end of the content
-                let percentage = (scrolled / containerHeight) * 100;
+            const totalDistance = endScroll - startScroll;
+            const scrolledDistance = currentScroll - startScroll;
 
-                // Fine-tuning: make it fill slightly faster so it looks connected
-                percentage = Math.min(100, Math.max(0, percentage));
-
-                timelineProgress.style.height = `${percentage}%`;
-            } else {
-                timelineProgress.style.height = '0%';
+            // Calculate progress 0 to 1
+            let progress = 0;
+            if (totalDistance > 0) {
+                progress = scrolledDistance / totalDistance;
             }
+
+            // Clamp between 0 and 1
+            progress = Math.min(1, Math.max(0, progress));
+
+            // Update height
+            timelineProgress.style.height = `${progress * 100}%`;
 
             // Highlighting dots
             timelineItems.forEach(item => {
@@ -195,7 +198,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     item.classList.remove('active');
                 }
             });
-        });
+        };
+
+        window.addEventListener('scroll', updateTimeline);
+        window.addEventListener('resize', updateTimeline);
+        // Initial call
+        updateTimeline();
     }
 
     // Function to update all quote button URLs based on active service
