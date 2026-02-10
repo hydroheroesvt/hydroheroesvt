@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Hydro Heroes</title>
+    <meta name="description"
+        content="Learn about Hydro Heroes, a team of high school entrepreneurs bringing professional window washing and car detailing to the Upper Valley.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .about-content-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .story-block {
+            margin-bottom: 60px;
+        }
+
+        .story-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray-600);
+            margin-bottom: 20px;
+        }
+
+        .why-choose-list {
+            list-style: none;
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .why-choose-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .check-icon {
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        .mission-box {
+            background: var(--off-white);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--accent);
+            margin-top: 40px;
+        }
+
+        .mission-text {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--primary);
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body id="top">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Hydro Heroes Logo">
+                <span class="logo-text">HYDRO HEROES</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#how">How It Works</a>
+                <a href="about.html" class="active">About</a>
+            </div>
+
+            <a href="quote.html" class="nav-cta">Get Free Quote</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <span class="hero-badge">Our Story</span>
+            <h1 class="hero-title" style="margin-top: 20px;">More Than Just Window Cleaners</h1>
+            <p class="hero-subtitle" style="max-width: 700px; margin: 20px auto 0; opacity: 0.9;">
+                Local hustle, squeegees, and surprisingly good manners.
+            </p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="about-content-section">
+        <div class="container" style="max-width: 800px;">
+            <div class="story-block">
+                <h2 class="story-title">Who We Are</h2>
+                <p class="story-text">
+                    We’re Hydro Heroes — your local cleaning crew armed with squeegees, hustle, and a passion for
+                    clarity.
+                    We’re not your average window cleaners. We’re high school entrepreneurs from the Upper Valley who
+                    decided to skip the typical summer job and build something of our own.
+                </p>
+                <p class="story-text">
+                    Armed with some basic tools, YouTube tutorials, and way too much time in Google Sheets, we launched
+                    Hydro Heroes to bring top-tier service to homes and businesses in our community.
+                </p>
+            </div>
+
+            <div class="story-block">
+                <h2 class="story-title">How It Started</h2>
+                <p class="story-text">
+                    We started out simply: walking or biking to our early jobs (back when a driver’s license was still
+                    just a dream), knocking on doors, and doing everything ourselves — from scheduling and quoting to
+                    scrubbing and rinsing.
+                </p>
+                <p class="story-text">
+                    It was equal parts chaos and learning curve, but every clean window pushed us to keep going and get
+                    better.
+                </p>
+            </div>
+
+            <div class="story-block">
+                <h2 class="story-title">How It’s Going</h2>
+                <p class="story-text">
+                    These days, we’re a well-oiled machine. We’ve upgraded our gear, expanded our schedule, and polished
+                    our process to perfection.
+                </p>
+                <p class="story-text">
+                    But we’ve kept the things that matter most: attention to detail, respect for your space, and the
+                    kind of customer service you’d expect from a business twice our age.
+                </p>
+            </div>
+
+            <div class="story-block">
+                <h2 class="story-title">Why People Choose Us</h2>
+                <ul class="why-choose-list">
+                    <li class="why-choose-item">
+                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span><strong>We show up on time</strong> (yes, really — teenagers with alarm clocks!)</span>
+                    </li>
+                    <li class="why-choose-item">
+                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span><strong>We treat your property like it’s our own</strong> with utmost care and
+                            respect.</span>
+                    </li>
+                    <li class="why-choose-item">
+                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span><strong>We care about quality</strong> — no streaks, no shortcuts, guaranteed.</span>
+                    </li>
+                    <li class="why-choose-item">
+                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span><strong>We’re easy to work with</strong> — friendly, responsive, and just a text
+                            away.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mission-box">
+                <h3
+                    style="color: var(--gray-500); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
+                    Our Mission</h3>
+                <p class="mission-text">
+                    "To bring light, clarity, and a little sparkle to the homes and businesses in our community — one
+                    window at a time. And maybe change a few minds about what young people are capable of along the
+                    way."
+                </p>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="quote.html" class="btn btn-primary" style="display: inline-flex;">
+                    <span>Book Us Now</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="logo.png" alt="Hydro Heroes Logo" class="footer-logo">
+                    <span class="footer-name">HYDRO HEROES</span>
+                    <p class="footer-tagline">Vermont's Premier Cleaning Professionals</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#services">Services</a>
+                    <a href="index.html#how">How It Works</a>
+                    <a href="about.html">About</a>
+                    <a href="quote.html">Get a Quote</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" />
+                            <circle cx="12" cy="12" r="4" />
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hydro Heroes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Inline styles for nav link layout to match index.html -->
+    <style>
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            margin: 0 40px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--gray-700);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</body>
+
+</html>

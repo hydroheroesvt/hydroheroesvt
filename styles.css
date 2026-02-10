@@ -1789,3 +1789,35 @@ a.contact-value:hover {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== ABOUT TEASER ===== */
+.about-teaser {
+    padding: 80px 0;
+    background: var(--white);
+    text-align: center;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    margin: 0 20px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    color: var(--gray-700);
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 900px) {
+    .nav-links {
+        display: none;
+    }
+}
