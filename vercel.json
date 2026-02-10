@@ -8,6 +8,10 @@
     },
     "rewrites": [
         {
+            "source": "/.netlify/functions/send-quote",
+            "destination": "/api/send-quote"
+        },
+        {
             "source": "/(.*)",
             "destination": "/$1"
         }
