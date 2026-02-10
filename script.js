@@ -83,6 +83,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     heroSection.classList.remove('detailing-hero');
                 }
 
+                // Show windows FAQ, hide detailing FAQ
+                const faqWindows = document.getElementById('faq-windows');
+                const faqDetailing = document.getElementById('faq-detailing');
+                if (faqWindows) faqWindows.style.display = 'block';
+                if (faqDetailing) faqDetailing.style.display = 'none';
+
                 // Update quote button URLs for windows
                 updateQuoteLinks('windows');
             } else {
@@ -117,6 +123,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     heroSection.classList.remove('windows-hero');
                     heroSection.classList.add('detailing-hero');
                 }
+
+                // Show detailing FAQ, hide windows FAQ
+                const faqWindows = document.getElementById('faq-windows');
+                const faqDetailing = document.getElementById('faq-detailing');
+                if (faqWindows) faqWindows.style.display = 'none';
+                if (faqDetailing) faqDetailing.style.display = 'block';
             }
 
             // Update quote button URLs based on active service
