@@ -2180,4 +2180,10 @@ a.contact-value:hover {
     .hero-bg {
         background: linear-gradient(180deg, rgba(10, 61, 98, 0.9) 0%, rgba(45, 106, 159, 0.8) 100%) !important;
     }
+
+    /* Fix Rotating Text wrapping */
+    .feature-title {
+        font-size: 1.75rem;
+        /* Reduced from 2.5rem clamp */
+    }
 }
