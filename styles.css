@@ -1881,10 +1881,6 @@ a.contact-value:hover {
     max-height: 100%;
 }
 
-transition: height 0.05s linear;
-max-height: 100%;
-}
-
 .timeline-content {
     flex-grow: 1;
     padding-bottom: 40px;
