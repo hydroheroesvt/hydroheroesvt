@@ -2183,7 +2183,18 @@ a.contact-value:hover {
 
     /* Fix Rotating Text wrapping */
     .feature-title {
-        font-size: 1.75rem;
-        /* Reduced from 2.5rem clamp */
+        font-size: clamp(1.5rem, 7vw, 2.2rem);
+        white-space: nowrap;
+        display: flex;
+        justify-content: center;
+        gap: 0.2em;
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .rotating-text-wrapper {
+        width: auto;
+        min-width: 120px;
+        text-align: left;
     }
 }
