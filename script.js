@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const toggleButtons = document.querySelectorAll('.toggle-btn');
     const heroTitle = document.getElementById('hero-title');
     const heroSubtitle = document.getElementById('hero-subtitle');
+    const aboutTeaserTitle = document.getElementById('about-teaser-title');
     const gallerySection = document.getElementById('gallery');
     const carGallerySection = document.getElementById('car-gallery');
 
@@ -12,11 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const content = {
         windows: {
             heroTitle: '<span class="title-line">Dirty Windows?</span><span class="title-accent">We Can Fix That.</span>',
-            heroSubtitle: 'Professional window washing that brings the sparkle back to your home or business. Crystal clear views, guaranteed satisfaction.'
+            heroSubtitle: 'Professional window washing that brings the sparkle back to your home or business. Crystal clear views, guaranteed satisfaction.',
+            aboutTeaserTitle: 'More Than Just Window Cleaners'
         },
         detailing: {
             heroTitle: '<span class="title-line">Dirty Car?</span><span class="title-accent">We\'ll Make It Shine.</span>',
-            heroSubtitle: 'Premium car detailing that makes your vehicle look showroom-ready. From express washes to full ceramic coatings.'
+            heroSubtitle: 'Premium car detailing that makes your vehicle look showroom-ready. From express washes to full ceramic coatings.',
+            aboutTeaserTitle: 'More Than Just Car Detailers'
         }
     };
 
@@ -44,10 +47,21 @@ document.addEventListener('DOMContentLoaded', function () {
         heroSubtitle.style.opacity = '0';
         heroSubtitle.style.transform = 'translateY(20px)';
 
+        if (aboutTeaserTitle) {
+            aboutTeaserTitle.style.opacity = '0';
+            aboutTeaserTitle.style.transform = 'translateY(20px)';
+        }
+
         setTimeout(() => {
             // Update content
             heroTitle.innerHTML = content[service].heroTitle;
             heroSubtitle.textContent = content[service].heroSubtitle;
+
+            if (aboutTeaserTitle) {
+                aboutTeaserTitle.textContent = content[service].aboutTeaserTitle;
+                aboutTeaserTitle.style.opacity = '1';
+                aboutTeaserTitle.style.transform = 'translateY(0)';
+            }
 
             // Toggle gallery visibility
             if (service === 'windows') {
