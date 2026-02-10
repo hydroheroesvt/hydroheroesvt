@@ -2247,3 +2247,127 @@ a.contact-value:hover {
         background-position: 75% center !important;
     }
 }
+
+/* ===== ABOUT PAGE STYLES (Migrated) ===== */
+.about-hero {
+    padding: 180px 0 80px;
+    background: var(--primary-dark);
+    color: white;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-hero .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-left: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+/* Note: .hero-title and .hero-subtitle reuse existing classes but might need specific overrides if structurally different */
+
+.about-content-section {
+    padding: 0 0 80px;
+    background: var(--white);
+}
+
+.story-block {
+    margin-bottom: 60px;
+}
+
+.story-title {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.story-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--gray-600);
+    margin-bottom: 20px;
+}
+
+.why-choose-list {
+    list-style: none;
+    display: grid;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.why-choose-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.check-icon {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.mission-box {
+    background: var(--off-white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--accent);
+    margin-top: 40px;
+}
+
+.mission-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--primary);
+    font-style: italic;
+}
+
+/* About Page Mobile Fixes */
+@media (max-width: 768px) {
+    .about-hero {
+        padding-top: 220px !important;
+        /* Extra padding to clear mobile nav */
+        padding-bottom: 60px;
+    }
+
+    .timeline-item {
+        margin-bottom: 40px;
+    }
+
+    /* Fix Footer Social Icons Size explicitly on mobile */
+    .footer-social-new .social-btn {
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px;
+    }
+
+    .footer-social-new .social-btn svg {
+        width: 20px !important;
+        height: 20px !important;
+        max-width: 20px;
+    }
+
+    /* Ensure footer grid stacks */
+    .footer-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+}
