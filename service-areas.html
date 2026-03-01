@@ -12,15 +12,155 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Hydro Heroes</title>
+    <title>Service Areas | Hydro Heroes</title>
     <meta name="description"
-        content="Learn about Hydro Heroes, a team of high school entrepreneurs bringing professional window washing and car detailing to the Upper Valley.">
+        content="Hydro Heroes proudly serves towns across Vermont and New Hampshire's Upper Valley. See our full list of service areas.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=2">
 
+    <style>
+        .service-areas-hero {
+            padding: 180px 0 80px;
+            background: var(--primary-dark);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-areas-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 158, 255, 0.15), transparent 60%),
+                radial-gradient(circle at 70% 30%, rgba(59, 158, 255, 0.1), transparent 50%);
+            pointer-events: none;
+        }
+
+        .service-areas-hero .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
+
+        .service-areas-hero .hero-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+
+        .service-areas-hero .hero-subtitle {
+            font-size: 1.15rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Towns displayed section */
+        .service-areas-content {
+            padding: 80px 0 100px;
+            background: #f0f7ff;
+        }
+
+        .service-areas-content .service-area-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* On this dedicated page, cards are always open — show all towns */
+        .service-areas-content .service-area-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .service-areas-content .service-area-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .state-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .service-areas-content .area-list {
+            padding: 16px 24px 24px;
+        }
+
+        .service-areas-content .town-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px 16px;
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .service-areas-content .town-grid li {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .service-areas-content .town-grid li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .service-areas-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .service-areas-cta p {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .service-areas-content .town-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-areas-hero {
+                padding: 140px 0 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-areas-content .town-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body id="top">
@@ -35,7 +175,7 @@
             <div class="nav-links">
                 <a href="index.html#services">Services</a>
                 <a href="index.html#how">How It Works</a>
-                <a href="about.html" class="active">About</a>
+                <a href="about.html">About</a>
             </div>
 
             <a href="quote.html" class="nav-cta">Get Free Quote</a>
@@ -43,139 +183,92 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="about-hero">
+    <section class="service-areas-hero">
         <div class="container">
-            <span class="hero-badge">Our Story</span>
-            <h1 class="hero-title">More Than Just Window Cleaners</h1>
+            <span class="hero-badge">Where We Work</span>
+            <h1 class="hero-title">Our Service Areas</h1>
             <p class="hero-subtitle">
-                Local hustle, squeegees, and surprisingly good manners.
+                Proudly serving towns across Vermont and New Hampshire's Upper Valley with premium window washing and
+                car
+                detailing.
             </p>
         </div>
     </section>
 
-    <!-- Content Section -->
-    <section class="about-content-section">
+    <!-- Service Areas Content -->
+    <section class="service-areas-content">
         <div class="container">
-            <!-- Timeline Section -->
-            <div class="timeline-container">
-                <div class="timeline-left">
-                    <div class="timeline-track">
-                        <div class="timeline-line-base"></div>
-                        <div class="timeline-line-progress" id="timeline-progress"></div>
+            <div class="service-area-grid">
+                <!-- Vermont -->
+                <div class="service-area-card">
+                    <div class="state-header">
+                        <span class="state-icon">VT</span>
+                        Vermont
+                    </div>
+                    <div class="area-list">
+                        <ul class="town-grid">
+                            <li>Barnard</li>
+                            <li>Bradford</li>
+                            <li>Bridgewater</li>
+                            <li>Chelsea</li>
+                            <li>Corinth</li>
+                            <li>Fairlee</li>
+                            <li>Hartford</li>
+                            <li>Hartland</li>
+                            <li>Newbury</li>
+                            <li>Norwich</li>
+                            <li>Pomfret</li>
+                            <li>Quechee</li>
+                            <li>Royalton</li>
+                            <li>Sharon</li>
+                            <li>Strafford</li>
+                            <li>Thetford</li>
+                            <li>Tunbridge</li>
+                            <li>Vershire</li>
+                            <li>Weathersfield</li>
+                            <li>Windsor</li>
+                            <li>Woodstock</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="timeline-content">
-                    <!-- Timeline Item 1 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot-wrapper">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-text-content">
-                            <h2 class="story-title">Who We Are</h2>
-                            <p class="story-text">
-                                We’re Hydro Heroes — your local cleaning crew armed with squeegees, hustle, and a
-                                passion for clarity.
-                                We’re not your average window cleaners. We’re high school entrepreneurs from the Upper
-                                Valley who decided to skip the typical summer job and build something of our own.
-                            </p>
-                            <p class="story-text">
-                                Armed with some basic tools, YouTube tutorials, and way too much time in Google Sheets,
-                                we launched Hydro Heroes to bring top-tier service to homes and businesses in our
-                                community.
-                            </p>
-                        </div>
+                <!-- New Hampshire -->
+                <div class="service-area-card">
+                    <div class="state-header">
+                        <span class="state-icon nh">NH</span>
+                        New Hampshire
                     </div>
-
-                    <!-- Timeline Item 2 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot-wrapper">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-text-content">
-                            <h2 class="story-title">How It Started</h2>
-                            <p class="story-text">
-                                We started out simply: walking or biking to our early jobs (back when a driver’s license
-                                was still just a dream), knocking on doors, and doing everything ourselves — from
-                                scheduling and quoting to scrubbing and rinsing.
-                            </p>
-                            <p class="story-text">
-                                It was equal parts chaos and learning curve, but every clean window pushed us to keep
-                                going and get better.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Timeline Item 3 -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot-wrapper">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        <div class="timeline-text-content">
-                            <h2 class="story-title">How It’s Going</h2>
-                            <p class="story-text">
-                                These days, we’re a well-oiled machine. We’ve upgraded our gear, expanded our schedule,
-                                and polished our process to perfection.
-                            </p>
-                            <p class="story-text">
-                                But we’ve kept the things that matter most: attention to detail, respect for your space,
-                                and the kind of customer service you’d expect from a business twice our age.
-                            </p>
-                        </div>
+                    <div class="area-list">
+                        <ul class="town-grid">
+                            <li>Canaan</li>
+                            <li>Claremont</li>
+                            <li>Cornish</li>
+                            <li>Croydon</li>
+                            <li>Enfield</li>
+                            <li>Grafton</li>
+                            <li>Grantham</li>
+                            <li>Hanover</li>
+                            <li>Haverhill</li>
+                            <li>Lebanon</li>
+                            <li>Lyme</li>
+                            <li>Newbury</li>
+                            <li>New London</li>
+                            <li>Newport</li>
+                            <li>Orford</li>
+                            <li>Piermont</li>
+                            <li>Plainfield</li>
+                            <li>Springfield</li>
+                            <li>Sunapee</li>
+                            <li>Wilmot</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="story-block">
-                <h2 class="story-title">Why People Choose Us</h2>
-                <ul class="why-choose-list">
-                    <li class="why-choose-item">
-                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span><strong>We show up on time</strong> (yes, really — teenagers with alarm clocks!)</span>
-                    </li>
-                    <li class="why-choose-item">
-                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span><strong>We treat your property like it’s our own</strong> with utmost care and
-                            respect.</span>
-                    </li>
-                    <li class="why-choose-item">
-                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span><strong>We care about quality</strong> — no streaks, no shortcuts, guaranteed.</span>
-                    </li>
-                    <li class="why-choose-item">
-                        <svg class="check-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span><strong>We’re easy to work with</strong> — friendly, responsive, and just a text
-                            away.</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="mission-box">
-                <h3
-                    style="color: var(--gray-500); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px;">
-                    Our Mission</h3>
-                <p class="mission-text">
-                    "To bring light, clarity, and a little sparkle to the homes and businesses in our community — one
-                    window at a time. And maybe change a few minds about what young people are capable of along the
-                    way."
-                </p>
-            </div>
-
-            <div style="text-align: center; margin-top: 60px;">
-                <a href="quote.html" class="btn btn-primary" style="display: inline-flex;">
-                    <span>Book Us Now</span>
+            <div class="service-areas-cta">
+                <p>Don't see your town? Give us a call — we may still be able to help!</p>
+                <a href="quote.html" class="btn btn-primary">
+                    <span>Get Your Free Quote</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
@@ -309,6 +402,10 @@
         }
     </style>
     <script src="script.js?v=2"></script>
+
+    <!-- ElevenLabs Conversational AI Widget -->
+    <elevenlabs-convai agent-id="agent_8401kgfwz5wyet8btd50wg1kpd04"></elevenlabs-convai>
+    <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
 </body>
 
 </html>
