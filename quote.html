@@ -22,7 +22,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=2">
     <style>
-        /* ===== Quote Page Layout ===== */
+        /* ===== Quote Page Base ===== */
         .quote-page {
             min-height: 100vh;
             background: var(--gradient-hero);
@@ -31,7 +31,7 @@
         }
 
         .quote-container {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 0 24px;
         }
@@ -87,91 +87,27 @@
             height: 20px;
         }
 
-        /* ===== Progress Bar ===== */
+        /* ===== Progress Bar (line segments) ===== */
         .progress-bar {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 36px;
-            gap: 0;
+            gap: 8px;
+            margin-bottom: 32px;
         }
 
-        .progress-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .progress-circle {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.15);
-            color: rgba(255, 255, 255, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .progress-circle svg {
-            width: 20px;
-            height: 20px;
-            display: none;
-        }
-
-        .progress-step.active .progress-circle {
-            background: var(--accent);
-            color: var(--white);
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(59, 158, 255, 0.4);
-            transform: scale(1.1);
-        }
-
-        .progress-step.completed .progress-circle {
-            background: #10b981;
-            color: var(--white);
-            border-color: #10b981;
-            box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
-        }
-
-        .progress-step.completed .progress-circle .step-number {
-            display: none;
-        }
-
-        .progress-step.completed .progress-circle svg {
-            display: block;
-        }
-
-        .progress-label {
-            margin-top: 8px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.4);
-            transition: color 0.3s ease;
-        }
-
-        .progress-step.active .progress-label,
-        .progress-step.completed .progress-label {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .progress-line {
-            width: 60px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 2px;
-            margin: 0 4px;
-            margin-bottom: 28px;
+        .progress-segment {
+            flex: 1;
+            height: 5px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.2);
             transition: background 0.4s ease;
         }
 
-        .progress-line.filled {
+        .progress-segment.filled {
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(59, 158, 255, 0.4);
+        }
+
+        .progress-segment.completed {
             background: #10b981;
         }
 
@@ -181,19 +117,14 @@
             border-radius: var(--radius-xl);
             padding: 48px;
             box-shadow: var(--shadow-xl);
-            overflow: hidden;
             position: relative;
+            overflow: hidden;
         }
 
         /* ===== Steps ===== */
-        .form-steps-container {
-            position: relative;
-            overflow: hidden;
-        }
-
         .form-step {
             display: none;
-            animation-duration: 0.4s;
+            animation-duration: 0.35s;
             animation-fill-mode: both;
             animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -213,7 +144,7 @@
         @keyframes slideInRight {
             from {
                 opacity: 0;
-                transform: translateX(60px);
+                transform: translateX(50px);
             }
 
             to {
@@ -225,7 +156,7 @@
         @keyframes slideInLeft {
             from {
                 opacity: 0;
-                transform: translateX(-60px);
+                transform: translateX(-50px);
             }
 
             to {
@@ -234,75 +165,278 @@
             }
         }
 
-        .step-title {
-            font-size: 1.4rem;
-            font-weight: 700;
+        .step-heading {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: var(--primary);
-            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
         }
 
         .step-subtitle {
+            text-align: center;
             font-size: 0.95rem;
             color: var(--gray-500);
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
 
-        /* ===== Navigation Buttons ===== */
+        /* ===== Icon Inputs ===== */
+        .icon-input-group {
+            margin-bottom: 16px;
+        }
+
+        .icon-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+        }
+
+        .icon-input {
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 0 16px;
+            transition: all 0.25s ease;
+            background: var(--white);
+        }
+
+        .icon-input:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 158, 255, 0.1);
+        }
+
+        .icon-input.error {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .icon-input svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gray-400);
+            flex-shrink: 0;
+        }
+
+        .icon-input input {
+            flex: 1;
+            border: none;
+            padding: 14px 12px;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            color: var(--gray-700);
+            background: transparent;
+            outline: none;
+        }
+
+        .icon-input input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .error-msg.visible {
+            display: block;
+        }
+
+        /* ===== Selectable Service Cards ===== */
+        .service-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 12px;
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            background: var(--white);
+            text-align: center;
+            min-height: 130px;
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--gray-300);
+            background: var(--gray-50);
+            transform: translateY(-2px);
+        }
+
+        .service-card.selected {
+            border-color: var(--primary);
+            border-width: 2.5px;
+            background: rgba(10, 37, 64, 0.03);
+            box-shadow: 0 4px 12px rgba(10, 37, 64, 0.1);
+        }
+
+        .service-card input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .service-card-icon {
+            width: 44px;
+            height: 44px;
+            margin-bottom: 10px;
+            color: var(--accent);
+            transition: color 0.25s ease;
+        }
+
+        .service-card.selected .service-card-icon {
+            color: var(--primary);
+        }
+
+        .service-card-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--gray-700);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+        }
+
+        /* Check indicator */
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-200);
+            transition: all 0.25s ease;
+        }
+
+        .service-card.selected::after {
+            background: var(--primary);
+            border-color: var(--primary);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-size: 14px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* ===== Select Dropdown ===== */
+        .icon-input select {
+            flex: 1;
+            border: none;
+            padding: 14px 12px;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            color: var(--gray-700);
+            background: transparent;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+        }
+
+        /* ===== Textarea ===== */
+        .step-textarea {
+            width: 100%;
+            min-height: 140px;
+            padding: 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            font-family: var(--font-family);
+            font-size: 1rem;
+            color: var(--gray-700);
+            resize: vertical;
+            transition: border-color 0.25s ease;
+        }
+
+        .step-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 158, 255, 0.1);
+        }
+
+        .step-textarea::placeholder {
+            color: var(--gray-400);
+        }
+
+        /* ===== Navigation ===== */
         .step-nav {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
             margin-top: 32px;
             gap: 16px;
+        }
+
+        .step-nav-spread {
+            justify-content: space-between;
         }
 
         .btn-back {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 14px 24px;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            background: var(--white);
-            color: var(--gray-700);
+            gap: 6px;
+            padding: 0;
+            border: none;
+            background: none;
+            color: var(--accent);
             font-family: var(--font-family);
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
         }
 
         .btn-back:hover {
-            background: var(--gray-50);
-            border-color: var(--gray-300);
+            opacity: 0.8;
         }
 
         .btn-back svg {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
         }
 
         .btn-next {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 14px 32px;
+            padding: 14px 36px;
             border: none;
             border-radius: var(--radius);
-            background: linear-gradient(135deg, var(--accent) 0%, #60b4ff 100%);
+            background: var(--primary);
             color: var(--white);
             font-family: var(--font-family);
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(59, 158, 255, 0.3);
-            margin-left: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-next:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 158, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(10, 37, 64, 0.3);
         }
 
         .btn-next svg {
@@ -314,7 +448,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 16px 40px;
+            padding: 16px 44px;
             border: none;
             border-radius: var(--radius);
             background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
@@ -325,7 +459,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-            margin-left: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-submit:hover {
@@ -338,149 +473,54 @@
             height: 20px;
         }
 
-        /* ===== Validation ===== */
-        .form-group input.error,
-        .form-group select.error {
-            border-color: #ef4444;
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-        }
-
-        .error-message {
-            color: #ef4444;
-            font-size: 0.85rem;
-            margin-top: 4px;
-            display: none;
-        }
-
-        .error-message.visible {
-            display: block;
-        }
-
-        /* ===== Service Categories (same as before, carried over) ===== */
-        .service-category {
-            margin-bottom: 20px;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        .category-checkbox {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            background: var(--gray-50);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .category-checkbox:hover {
-            background: var(--gray-100);
-        }
-
-        .category-checkbox input {
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
-            accent-color: var(--primary);
-        }
-
-        .category-label {
-            font-weight: 600;
-            color: var(--gray-800);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .category-label svg {
-            width: 20px;
-            height: 20px;
-            color: var(--primary);
-        }
-
-        .sub-services {
-            padding: 16px 16px 16px 48px;
-            border-top: 1px solid var(--gray-200);
-            background: var(--white);
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-helper {
-            font-size: 0.9rem;
-            color: var(--gray-500);
-            margin-bottom: 12px;
-        }
-
-        /* Select dropdown styling */
-        .contact-form select {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            font-family: var(--font-family);
-            font-size: 1rem;
-            color: var(--gray-700);
-            background: var(--white);
-            transition: var(--transition);
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23475569' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-        }
-
-        .contact-form select:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(59, 158, 255, 0.1);
-        }
-
         /* ===== Responsive ===== */
         @media (max-width: 768px) {
             .quote-card {
                 padding: 32px 20px;
             }
 
-            .progress-line {
-                width: 36px;
+            .service-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .progress-circle {
-                width: 38px;
-                height: 38px;
-                font-size: 0.9rem;
-            }
-
-            .progress-label {
-                font-size: 0.7rem;
+            .input-row {
+                grid-template-columns: 1fr;
             }
 
             .step-nav {
                 flex-direction: column-reverse;
+                gap: 12px;
+            }
+
+            .step-nav-spread {
+                flex-direction: column;
             }
 
             .btn-next,
             .btn-submit {
                 width: 100%;
                 justify-content: center;
-                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-cards-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
             }
 
-            .btn-back {
-                width: 100%;
-                justify-content: center;
+            .service-card {
+                padding: 18px 8px;
+                min-height: 110px;
+            }
+
+            .service-card-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .service-card-label {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -494,12 +534,11 @@
                 <img src="logo.png" alt="Hydro Heroes Logo">
                 <span class="logo-text">HYDRO HEROES</span>
             </a>
-
             <a href="index.html" class="nav-cta">Back to Home</a>
         </div>
     </nav>
 
-    <!-- Quote Page Content -->
+    <!-- Quote Page -->
     <main class="quote-page">
         <div class="quote-container">
             <a href="index.html" class="back-link">
@@ -517,251 +556,283 @@
 
             <!-- Progress Bar -->
             <div class="progress-bar">
-                <div class="progress-step active" data-step="1">
-                    <div class="progress-circle">
-                        <span class="step-number">1</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                    </div>
-                    <span class="progress-label">Contact</span>
-                </div>
-                <div class="progress-line" data-line="1"></div>
-                <div class="progress-step" data-step="2">
-                    <div class="progress-circle">
-                        <span class="step-number">2</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                    </div>
-                    <span class="progress-label">Address</span>
-                </div>
-                <div class="progress-line" data-line="2"></div>
-                <div class="progress-step" data-step="3">
-                    <div class="progress-circle">
-                        <span class="step-number">3</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                    </div>
-                    <span class="progress-label">Services</span>
-                </div>
-                <div class="progress-line" data-line="3"></div>
-                <div class="progress-step" data-step="4">
-                    <div class="progress-circle">
-                        <span class="step-number">4</span>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                    </div>
-                    <span class="progress-label">Details</span>
-                </div>
+                <div class="progress-segment filled" data-seg="1"></div>
+                <div class="progress-segment" data-seg="2"></div>
+                <div class="progress-segment" data-seg="3"></div>
+                <div class="progress-segment" data-seg="4"></div>
             </div>
 
             <div class="quote-card">
-                <form class="contact-form" id="quote-form">
-                    <div class="form-steps-container">
+                <form id="quote-form" novalidate>
 
-                        <!-- Step 1: Contact -->
-                        <div class="form-step active" data-step="1">
-                            <h2 class="step-title">Contact Information</h2>
-                            <p class="step-subtitle">Let us know how to reach you.</p>
-                            <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" name="name" required placeholder="John Smith">
-                                <span class="error-message" id="name-error">Please enter your name</span>
+                    <!-- STEP 1: Contact Info -->
+                    <div class="form-step active" data-step="1">
+                        <h2 class="step-heading">Let's Get to Know You!</h2>
+                        <p class="step-subtitle">We'll use this info to send your quote.</p>
+
+                        <div class="icon-input-group">
+                            <label for="name">Full Name</label>
+                            <div class="icon-input" id="name-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                <input type="text" id="name" name="name" placeholder="John Smith" required>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" required placeholder="john@email.com">
-                                <span class="error-message" id="email-error">Please enter a valid email</span>
+                            <span class="error-msg" id="name-error">Please enter your name</span>
+                        </div>
+
+                        <div class="icon-input-group">
+                            <label for="email">Email Address</label>
+                            <div class="icon-input" id="email-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                    <polyline points="22,6 12,13 2,6" />
+                                </svg>
+                                <input type="email" id="email" name="email" placeholder="john@email.com" required>
                             </div>
-                            <div class="form-group">
-                                <label for="phone">Phone Number <span class="optional">(optional)</span></label>
+                            <span class="error-msg" id="email-error">Please enter a valid email address</span>
+                        </div>
+
+                        <div class="icon-input-group">
+                            <label for="phone">Phone Number <span
+                                    style="color: var(--gray-400); font-weight: 400;">(optional)</span></label>
+                            <div class="icon-input">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path
+                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                </svg>
                                 <input type="tel" id="phone" name="phone" placeholder="(802) 555-1234">
-                            </div>
-                            <div class="step-nav">
-                                <button type="button" class="btn-next" onclick="nextStep()">
-                                    <span>Next</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </button>
                             </div>
                         </div>
 
-                        <!-- Step 2: Address -->
-                        <div class="form-step" data-step="2">
-                            <h2 class="step-title">Property Address</h2>
-                            <p class="step-subtitle">Where should we provide service?</p>
-                            <div class="form-group">
-                                <label for="street">Street Address</label>
-                                <input type="text" id="street" name="street" required placeholder="123 Main St">
-                                <span class="error-message" id="street-error">Please enter your street address</span>
+                        <div class="step-nav">
+                            <button type="button" class="btn-next" onclick="nextStep()">
+                                Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Services (card selection) -->
+                    <div class="form-step" data-step="2">
+                        <h2 class="step-heading">What Services?</h2>
+                        <p class="step-subtitle">Select everything you're interested in.</p>
+
+                        <div class="service-cards-grid">
+                            <label class="service-card" id="card-ext-windows">
+                                <input type="checkbox" name="services" value="Exterior Windows">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <line x1="3" y1="12" x2="21" y2="12" />
+                                    <line x1="12" y1="3" x2="12" y2="21" />
+                                    <path d="M6 6l3 3M15 6l3 3" opacity="0.5" />
+                                </svg>
+                                <span class="service-card-label">Exterior Windows</span>
+                            </label>
+
+                            <label class="service-card" id="card-int-windows">
+                                <input type="checkbox" name="services" value="Interior Windows">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <line x1="3" y1="12" x2="21" y2="12" />
+                                    <line x1="12" y1="3" x2="12" y2="21" />
+                                    <circle cx="8" cy="8" r="1.5" fill="currentColor" opacity="0.3" />
+                                </svg>
+                                <span class="service-card-label">Interior Windows</span>
+                            </label>
+
+                            <label class="service-card" id="card-screens">
+                                <input type="checkbox" name="services" value="Screen Cleaning">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <line x1="7" y1="3" x2="7" y2="21" opacity="0.3" />
+                                    <line x1="11" y1="3" x2="11" y2="21" opacity="0.3" />
+                                    <line x1="15" y1="3" x2="15" y2="21" opacity="0.3" />
+                                    <line x1="3" y1="7" x2="21" y2="7" opacity="0.3" />
+                                    <line x1="3" y1="11" x2="21" y2="11" opacity="0.3" />
+                                    <line x1="3" y1="15" x2="21" y2="15" opacity="0.3" />
+                                </svg>
+                                <span class="service-card-label">Screen Cleaning</span>
+                            </label>
+
+                            <label class="service-card" id="card-skylights">
+                                <input type="checkbox" name="services" value="Skylights">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <polygon points="12,2 22,12 2,12" />
+                                    <rect x="6" y="12" width="12" height="9" rx="1" />
+                                    <line x1="12" y1="12" x2="12" y2="21" />
+                                </svg>
+                                <span class="service-card-label">Skylights</span>
+                            </label>
+
+                            <label class="service-card" id="card-gutters">
+                                <input type="checkbox" name="services" value="Gutter Cleaning">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M3 7h18v3c0 1-1 2-2 2H5c-1 0-2-1-2-2V7z" />
+                                    <path d="M19 12v6c0 1-1 2-2 2h-2l-1-4" />
+                                    <path d="M5 12v6c0 1 1 2 2 2h2l1-4" />
+                                </svg>
+                                <span class="service-card-label">Gutter Cleaning</span>
+                            </label>
+
+                            <label class="service-card" id="card-ext-detail">
+                                <input type="checkbox" name="services" value="Exterior Detail">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
+                                    <line x1="9" y1="17" x2="15" y2="17" />
+                                </svg>
+                                <span class="service-card-label">Car Exterior Detail</span>
+                            </label>
+
+                            <label class="service-card" id="card-int-detail">
+                                <input type="checkbox" name="services" value="Interior Detail">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <rect x="3" y="8" width="18" height="12" rx="2" />
+                                    <path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" />
+                                    <circle cx="12" cy="14" r="2" />
+                                </svg>
+                                <span class="service-card-label">Car Interior Detail</span>
+                            </label>
+
+                            <label class="service-card" id="card-wax">
+                                <input type="checkbox" name="services" value="Spray Wax">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z" />
+                                </svg>
+                                <span class="service-card-label">Spray Wax</span>
+                            </label>
+
+                            <label class="service-card" id="card-pet">
+                                <input type="checkbox" name="services" value="Pet Hair Removal">
+                                <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="11" cy="18" r="4" />
+                                    <circle cx="4.5" cy="9" r="2" />
+                                    <circle cx="9" cy="5.5" r="2" />
+                                    <circle cx="15" cy="5.5" r="2" />
+                                    <circle cx="19.5" cy="9" r="2" />
+                                </svg>
+                                <span class="service-card-label">Pet Hair Removal</span>
+                            </label>
+                        </div>
+
+                        <div class="step-nav step-nav-spread">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                                </svg>
+                                Back
+                            </button>
+                            <button type="button" class="btn-next" onclick="nextStep()">
+                                Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Message -->
+                    <div class="form-step" data-step="3">
+                        <h2 class="step-heading">Tell Us More</h2>
+                        <p class="step-subtitle">Any details or special requests? (optional)</p>
+
+                        <textarea class="step-textarea" id="message" name="message"
+                            placeholder="Number of windows, size of vehicle, scheduling preferences, questions..."></textarea>
+
+                        <div class="step-nav step-nav-spread">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                                </svg>
+                                Back
+                            </button>
+                            <button type="button" class="btn-next" onclick="nextStep()">
+                                Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: Address + Submit -->
+                    <div class="form-step" data-step="4">
+                        <h2 class="step-heading">Where Are You Located?</h2>
+                        <p class="step-subtitle">Almost done! Just need your address.</p>
+
+                        <div class="icon-input-group">
+                            <label for="street">Street Address</label>
+                            <div class="icon-input" id="street-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                <input type="text" id="street" name="street" placeholder="123 Main St" required>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="city">City / Town</label>
-                                    <input type="text" id="city" name="city" required placeholder="Burlington">
-                                    <span class="error-message" id="city-error">Please enter your city</span>
+                            <span class="error-msg" id="street-error">Please enter your street address</span>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="icon-input-group">
+                                <label for="city">City / Town</label>
+                                <div class="icon-input" id="city-wrap">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="4" y="2" width="16" height="20" rx="2" />
+                                        <line x1="9" y1="6" x2="9" y2="6.01" />
+                                        <line x1="15" y1="6" x2="15" y2="6.01" />
+                                        <line x1="9" y1="10" x2="9" y2="10.01" />
+                                        <line x1="15" y1="10" x2="15" y2="10.01" />
+                                        <line x1="9" y1="14" x2="9" y2="14.01" />
+                                        <line x1="15" y1="14" x2="15" y2="14.01" />
+                                        <path d="M9 18h6" />
+                                    </svg>
+                                    <input type="text" id="city" name="city" placeholder="Hanover" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="state">State</label>
+                                <span class="error-msg" id="city-error">Please enter your city</span>
+                            </div>
+                            <div class="icon-input-group">
+                                <label for="state">State</label>
+                                <div class="icon-input">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                        <line x1="4" y1="22" x2="4" y2="15" />
+                                    </svg>
                                     <select id="state" name="state" required>
-                                        <option value="">Select state</option>
                                         <option value="VT" selected>Vermont</option>
                                         <option value="NH">New Hampshire</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="step-nav">
-                                <button type="button" class="btn-back" onclick="prevStep()">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                                    </svg>
-                                    <span>Back</span>
-                                </button>
-                                <button type="button" class="btn-next" onclick="nextStep()">
-                                    <span>Next</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
                         </div>
 
-                        <!-- Step 3: Services -->
-                        <div class="form-step" data-step="3">
-                            <h2 class="step-title">Services Needed</h2>
-                            <p class="step-subtitle">Select the services you're interested in.</p>
-
-                            <!-- Window Washing Category -->
-                            <div class="service-category">
-                                <label class="category-checkbox">
-                                    <input type="checkbox" id="cat-windows" name="categories" value="windows">
-                                    <span class="category-label">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                                            <line x1="3" y1="12" x2="21" y2="12" />
-                                            <line x1="12" y1="3" x2="12" y2="21" />
-                                        </svg>
-                                        Window Washing
-                                    </span>
-                                </label>
-                                <div class="sub-services" id="windows-options" style="display: none;">
-                                    <div class="checkbox-group">
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Exterior Windows">
-                                            <span class="checkmark"></span>
-                                            Exterior Windows
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Interior Windows">
-                                            <span class="checkmark"></span>
-                                            Interior Windows
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Skylights">
-                                            <span class="checkmark"></span>
-                                            Skylights
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Screen Cleaning">
-                                            <span class="checkmark"></span>
-                                            Screen Cleaning
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Gutter Cleaning">
-                                            <span class="checkmark"></span>
-                                            Gutter Cleaning
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Car Detailing Category -->
-                            <div class="service-category">
-                                <label class="category-checkbox">
-                                    <input type="checkbox" id="cat-detailing" name="categories" value="detailing">
-                                    <span class="category-label">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                            <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                            <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
-                                            <line x1="9" y1="17" x2="15" y2="17" />
-                                            <path d="M5 6l7 0" />
-                                        </svg>
-                                        Car Detailing
-                                    </span>
-                                </label>
-                                <div class="sub-services" id="detailing-options" style="display: none;">
-                                    <div class="checkbox-group">
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Exterior Detail">
-                                            <span class="checkmark"></span>
-                                            Exterior Detail
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Interior Detail">
-                                            <span class="checkmark"></span>
-                                            Interior Detail
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Spray Wax">
-                                            <span class="checkmark"></span>
-                                            Spray Wax
-                                        </label>
-                                        <label class="checkbox-item">
-                                            <input type="checkbox" name="services" value="Pet Hair Removal">
-                                            <span class="checkmark"></span>
-                                            Pet Hair Removal
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="step-nav">
-                                <button type="button" class="btn-back" onclick="prevStep()">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                                    </svg>
-                                    <span>Back</span>
-                                </button>
-                                <button type="button" class="btn-next" onclick="nextStep()">
-                                    <span>Next</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
+                        <div class="step-nav step-nav-spread">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                                </svg>
+                                Back
+                            </button>
+                            <button type="submit" class="btn-submit">
+                                Get My Free Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+                                </svg>
+                            </button>
                         </div>
-
-                        <!-- Step 4: Details + Submit -->
-                        <div class="form-step" data-step="4">
-                            <h2 class="step-title">Additional Details</h2>
-                            <p class="step-subtitle">Anything else we should know?</p>
-                            <div class="form-group">
-                                <label for="message">Tell us about your project</label>
-                                <textarea id="message" name="message" rows="5"
-                                    placeholder="Describe your property, any special requirements, or questions you have..."></textarea>
-                            </div>
-                            <div class="step-nav">
-                                <button type="button" class="btn-back" onclick="prevStep()">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M19 12H5M12 19l-7-7 7-7" />
-                                    </svg>
-                                    <span>Back</span>
-                                </button>
-                                <button type="submit" class="btn-submit">
-                                    <span>Get My Free Quote</span>
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
                     </div>
+
                 </form>
             </div>
         </div>
@@ -771,7 +842,6 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <!-- Brand Column -->
                 <div class="footer-col brand-col">
                     <div class="footer-brand-lockup">
                         <img src="logo.png" alt="Hydro Heroes Logo" class="footer-logo">
@@ -787,8 +857,6 @@
                         <span>100% Satisfaction Guarantee</span>
                     </div>
                 </div>
-
-                <!-- Services Column -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Our Services</h3>
                     <ul class="footer-links-list">
@@ -798,8 +866,6 @@
                         <li><a href="index.html#services">Skylight Washing</a></li>
                     </ul>
                 </div>
-
-                <!-- Service Area Column -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Service Areas</h3>
                     <ul class="footer-links-list">
@@ -811,8 +877,6 @@
                         <li><a href="service-areas.html" class="view-all-link">View All Towns →</a></li>
                     </ul>
                 </div>
-
-                <!-- Contact Column -->
                 <div class="footer-col">
                     <h3 class="footer-heading">Contact Us</h3>
                     <ul class="contact-list">
@@ -854,7 +918,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>&copy; 2026 Hydro Heroes. All rights reserved.</p>
                 <div class="footer-bottom-links">
@@ -866,99 +929,79 @@
     </footer>
 
     <script>
-        // ===== Multi-Step Form Logic =====
+        // ===== Multi-Step Logic =====
         let currentStep = 1;
         const totalSteps = 4;
 
-        function updateProgressBar() {
-            document.querySelectorAll('.progress-step').forEach(el => {
-                const step = parseInt(el.dataset.step);
-                el.classList.remove('active', 'completed');
-                if (step === currentStep) el.classList.add('active');
-                else if (step < currentStep) el.classList.add('completed');
-            });
-
-            document.querySelectorAll('.progress-line').forEach(el => {
-                const line = parseInt(el.dataset.line);
-                el.classList.toggle('filled', line < currentStep);
+        function updateProgress() {
+            document.querySelectorAll('.progress-segment').forEach(el => {
+                const seg = parseInt(el.dataset.seg);
+                el.classList.remove('filled', 'completed');
+                if (seg === currentStep) el.classList.add('filled');
+                else if (seg < currentStep) el.classList.add('completed');
             });
         }
 
         function showStep(step, direction) {
-            const allSteps = document.querySelectorAll('.form-step');
-            allSteps.forEach(s => {
+            document.querySelectorAll('.form-step').forEach(s => {
                 s.classList.remove('active', 'slide-in-right', 'slide-in-left');
             });
-
             const target = document.querySelector(`.form-step[data-step="${step}"]`);
             target.classList.add('active', direction === 'forward' ? 'slide-in-right' : 'slide-in-left');
         }
 
         function validateStep(step) {
             let valid = true;
-
             if (step === 1) {
                 const name = document.getElementById('name');
                 const email = document.getElementById('email');
-
                 if (!name.value.trim()) {
-                    name.classList.add('error');
+                    document.getElementById('name-wrap').classList.add('error');
                     document.getElementById('name-error').classList.add('visible');
                     valid = false;
                 } else {
-                    name.classList.remove('error');
+                    document.getElementById('name-wrap').classList.remove('error');
                     document.getElementById('name-error').classList.remove('visible');
                 }
-
                 if (!email.value.trim() || !email.value.includes('@')) {
-                    email.classList.add('error');
+                    document.getElementById('email-wrap').classList.add('error');
                     document.getElementById('email-error').classList.add('visible');
                     valid = false;
                 } else {
-                    email.classList.remove('error');
+                    document.getElementById('email-wrap').classList.remove('error');
                     document.getElementById('email-error').classList.remove('visible');
                 }
             }
-
-            if (step === 2) {
+            if (step === 4) {
                 const street = document.getElementById('street');
                 const city = document.getElementById('city');
-
                 if (!street.value.trim()) {
-                    street.classList.add('error');
+                    document.getElementById('street-wrap').classList.add('error');
                     document.getElementById('street-error').classList.add('visible');
                     valid = false;
                 } else {
-                    street.classList.remove('error');
+                    document.getElementById('street-wrap').classList.remove('error');
                     document.getElementById('street-error').classList.remove('visible');
                 }
-
                 if (!city.value.trim()) {
-                    city.classList.add('error');
+                    document.getElementById('city-wrap').classList.add('error');
                     document.getElementById('city-error').classList.add('visible');
                     valid = false;
                 } else {
-                    city.classList.remove('error');
+                    document.getElementById('city-wrap').classList.remove('error');
                     document.getElementById('city-error').classList.remove('visible');
                 }
             }
-
             return valid;
         }
 
         function nextStep() {
             if (!validateStep(currentStep)) return;
-
-            // Save partial lead after Step 1
-            if (currentStep === 1) {
-                savePartialLead();
-            }
-
+            if (currentStep === 1) savePartialLead();
             if (currentStep < totalSteps) {
                 currentStep++;
                 showStep(currentStep, 'forward');
-                updateProgressBar();
-                // Scroll to top of the form card
+                updateProgress();
                 document.querySelector('.quote-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
@@ -967,130 +1010,121 @@
             if (currentStep > 1) {
                 currentStep--;
                 showStep(currentStep, 'backward');
-                updateProgressBar();
+                updateProgress();
                 document.querySelector('.quote-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
 
-        // ===== Partial Lead Auto-Save =====
+        // ===== Partial Lead Save =====
         function savePartialLead() {
             const email = document.getElementById('email').value.trim();
             if (!email || !email.includes('@')) return;
-
-            const leadData = {
-                email: email,
-                name: document.getElementById('name').value.trim() || null,
-                phone: document.getElementById('phone').value.trim() || null
-            };
-
             fetch('/api/save-partial-lead', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(leadData)
-            }).catch(() => { /* silent */ });
+                body: JSON.stringify({
+                    email,
+                    name: document.getElementById('name').value.trim() || null,
+                    phone: document.getElementById('phone').value.trim() || null
+                })
+            }).catch(() => { });
         }
 
-        // ===== Service Category Toggles =====
+        // ===== Service Card Selection =====
         document.addEventListener('DOMContentLoaded', function () {
-            const catWindows = document.getElementById('cat-windows');
-            const catDetailing = document.getElementById('cat-detailing');
-            const windowsOptions = document.getElementById('windows-options');
-            const detailingOptions = document.getElementById('detailing-options');
-
-            function toggleOptions(checkbox, optionsElement) {
-                if (checkbox.checked) {
-                    optionsElement.style.display = 'block';
-                } else {
-                    optionsElement.style.display = 'none';
-                    optionsElement.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-                }
-            }
-
-            catWindows.addEventListener('change', () => toggleOptions(catWindows, windowsOptions));
-            catDetailing.addEventListener('change', () => toggleOptions(catDetailing, detailingOptions));
-
-            // Check URL parameter for initial service selection
-            const urlParams = new URLSearchParams(window.location.search);
-            const service = urlParams.get('service');
-
-            if (service === 'windows') {
-                catWindows.checked = true;
-                toggleOptions(catWindows, windowsOptions);
-            } else if (service === 'detailing') {
-                catDetailing.checked = true;
-                toggleOptions(catDetailing, detailingOptions);
-            }
-
-            // Clear error styling on input
-            document.querySelectorAll('.contact-form input, .contact-form select').forEach(input => {
-                input.addEventListener('input', function () {
-                    this.classList.remove('error');
-                    const errorEl = this.parentElement.querySelector('.error-message');
-                    if (errorEl) errorEl.classList.remove('visible');
+            document.querySelectorAll('.service-card').forEach(card => {
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', () => {
+                    card.classList.toggle('selected', checkbox.checked);
                 });
             });
+
+            // Clear error on input
+            document.querySelectorAll('.icon-input input').forEach(input => {
+                input.addEventListener('input', function () {
+                    this.closest('.icon-input').classList.remove('error');
+                    const errEl = this.closest('.icon-input-group').querySelector('.error-msg');
+                    if (errEl) errEl.classList.remove('visible');
+                });
+            });
+
+            // URL param for service pre-selection
+            const urlParams = new URLSearchParams(window.location.search);
+            const service = urlParams.get('service');
+            if (service === 'windows') {
+                ['card-ext-windows', 'card-int-windows'].forEach(id => {
+                    const card = document.getElementById(id);
+                    if (card) {
+                        card.querySelector('input').checked = true;
+                        card.classList.add('selected');
+                    }
+                });
+            } else if (service === 'detailing') {
+                ['card-ext-detail', 'card-int-detail'].forEach(id => {
+                    const card = document.getElementById(id);
+                    if (card) {
+                        card.querySelector('input').checked = true;
+                        card.classList.add('selected');
+                    }
+                });
+            }
         });
 
-        // ===== Form Submission =====
+        // ===== Form Submit =====
         const quoteForm = document.getElementById('quote-form');
-        if (quoteForm) {
-            quoteForm.addEventListener('submit', async function (e) {
-                e.preventDefault();
+        quoteForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            if (!validateStep(4)) return;
 
-                const formData = new FormData(quoteForm);
-                const fullAddress = `${formData.get('street')}, ${formData.get('city')}, ${formData.get('state')}`;
-                const data = {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone') || 'Not provided',
-                    address: fullAddress,
-                    services: formData.getAll('services').join(', ') || 'Not specified',
-                    message: formData.get('message') || 'No additional details'
-                };
+            const formData = new FormData(quoteForm);
+            const fullAddress = `${formData.get('street')}, ${formData.get('city')}, ${formData.get('state')}`;
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone') || 'Not provided',
+                address: fullAddress,
+                services: formData.getAll('services').join(', ') || 'Not specified',
+                message: formData.get('message') || 'No additional details'
+            };
 
-                const submitBtn = quoteForm.querySelector('.btn-submit');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<span>Sending...</span>';
-                submitBtn.disabled = true;
+            const submitBtn = quoteForm.querySelector('.btn-submit');
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>Sending...</span>';
+            submitBtn.disabled = true;
 
-                try {
-                    const response = await fetch('/api/send-quote', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
-
-                    if (response.ok) {
-                        submitBtn.innerHTML = '<span>✓ Quote Request Sent!</span>';
-                        submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
-                        quoteForm.reset();
-
-                        setTimeout(() => {
-                            submitBtn.innerHTML = originalText;
-                            submitBtn.style.background = '';
-                            submitBtn.disabled = false;
-                            // Reset to step 1
-                            currentStep = 1;
-                            showStep(1, 'backward');
-                            updateProgressBar();
-                        }, 3000);
-                    } else {
-                        throw new Error('Failed to send');
-                    }
-                } catch (error) {
-                    submitBtn.innerHTML = '<span>Error - Please call us</span>';
-                    submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
-
+            try {
+                const response = await fetch('/api/send-quote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    submitBtn.innerHTML = '<span>✓ Quote Request Sent!</span>';
+                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
+                    quoteForm.reset();
+                    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
                     setTimeout(() => {
-                        submitBtn.innerHTML = originalText;
+                        submitBtn.innerHTML = originalHTML;
                         submitBtn.style.background = '';
                         submitBtn.disabled = false;
+                        currentStep = 1;
+                        showStep(1, 'backward');
+                        updateProgress();
                     }, 3000);
+                } else {
+                    throw new Error('Failed');
                 }
-            });
-        }
+            } catch (err) {
+                submitBtn.innerHTML = '<span>Error - Please call us</span>';
+                submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalHTML;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
     </script>
-
 
     <!-- Vercel Analytics -->
     <script>
