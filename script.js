@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Start rotating every 1.5 seconds
     if (document.getElementById('rotating-text')) {
-        setInterval(rotateText, 1000);
+        setInterval(rotateText, 1250);
     }
 
     // Form submission handler (only if form exists on page)
