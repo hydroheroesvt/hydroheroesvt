@@ -127,7 +127,7 @@
         }
 
         .progress-segment.completed {
-            background: #10b981;
+            background: #3b9eff;
         }
 
         /* ===== Main Content Area ===== */
@@ -589,21 +589,21 @@
             padding: 16px 44px;
             border: none;
             border-radius: var(--radius);
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            background: linear-gradient(135deg, #3b9eff 0%, #60b3ff 100%);
             color: var(--white);
             font-family: var(--font-family);
             font-size: 1.05rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 4px 15px rgba(59, 158, 255, 0.3);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 6px 20px rgba(59, 158, 255, 0.4);
         }
 
         .btn-submit svg {
@@ -1203,7 +1203,7 @@
                 });
                 if (res.ok) {
                     btn.innerHTML = '<span>✓ Quote Request Sent!</span>';
-                    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
+                    btn.style.background = 'linear-gradient(135deg, #3b9eff 0%, #60b3ff 100%)';
                     this.reset();
                     document.querySelectorAll('.service-card, .category-card').forEach(c => c.classList.remove('selected'));
                     setTimeout(() => {
