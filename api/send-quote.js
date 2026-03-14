@@ -1,4 +1,10 @@
 import { Resend } from 'resend';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON_KEY
+);
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -62,6 +68,17 @@ export default async function handler(req, res) {
         if (error) {
             console.error('Resend API Error:', error);
             return res.status(500).json({ error: 'Failed to send email via Resend', details: error.message });
+        }
+
+        // Mark the partial lead as complete in Supabase
+        try {
+            await supabase
+                .from('partial_leads')
+                .update({ status: 'complete', updated_at: new Date().toISOString() })
+                .eq('email', email.toLowerCase().trim());
+        } catch (supabaseError) {
+            // Don't fail the whole request if Supabase update fails
+            console.error('Supabase update error:', supabaseError);
         }
 
         return res.status(200).json({ success: true, message: 'Email sent successfully' });

@@ -618,6 +618,47 @@
                 toggleOptions(catDetailing, detailingOptions);
             }
 
+            // =============================================
+            // Partial Lead Auto-Save (captures email on blur)
+            // =============================================
+            const emailField = document.getElementById('email');
+            const nameField = document.getElementById('name');
+            const phoneField = document.getElementById('phone');
+            let partialLeadSaved = false;
+
+            function savePartialLead() {
+                const email = emailField.value.trim();
+                if (!email || !email.includes('@')) return; // Only save valid-looking emails
+
+                const leadData = {
+                    email: email,
+                    name: nameField.value.trim() || null,
+                    phone: phoneField.value.trim() || null
+                };
+
+                // Fire and forget — don't block the user
+                fetch('/api/save-partial-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(leadData)
+                }).then(() => {
+                    partialLeadSaved = true;
+                }).catch(() => {
+                    // Silently fail — this is a background operation
+                });
+            }
+
+            // Save when user leaves the email field
+            emailField.addEventListener('blur', savePartialLead);
+
+            // Also update the lead when name or phone are filled in
+            nameField.addEventListener('blur', () => {
+                if (partialLeadSaved) savePartialLead();
+            });
+            phoneField.addEventListener('blur', () => {
+                if (partialLeadSaved) savePartialLead();
+            });
+
             // Form submission
             const quoteForm = document.getElementById('quote-form');
             if (quoteForm) {
@@ -641,7 +682,7 @@
                     submitBtn.disabled = true;
 
                     try {
-                        const response = await fetch('/.netlify/functions/send-quote', {
+                        const response = await fetch('/api/send-quote', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
