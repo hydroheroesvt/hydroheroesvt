@@ -87,7 +87,7 @@
             height: 20px;
         }
 
-        /* ===== Progress Bar (line segments) ===== */
+        /* ===== Progress Bar ===== */
         .progress-bar {
             display: flex;
             gap: 8px;
@@ -182,6 +182,111 @@
             margin-bottom: 32px;
         }
 
+        /* ===== Category Cards (Step 1 — big cards) ===== */
+        .category-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 20px;
+            border: 2.5px solid var(--gray-200);
+            border-radius: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+            text-align: center;
+            position: relative;
+            min-height: 200px;
+        }
+
+        .category-card:hover {
+            border-color: var(--gray-300);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .category-card.selected {
+            border-color: var(--primary);
+            background: rgba(10, 37, 64, 0.02);
+            box-shadow: 0 8px 24px rgba(10, 37, 64, 0.12);
+        }
+
+        .category-card input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .category-card-icon {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 16px;
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .category-card.selected .category-card-icon {
+            color: var(--primary);
+        }
+
+        .category-card-label {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Check indicator for category cards */
+        .category-card::after {
+            content: '';
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2.5px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .category-card.selected::after {
+            background: var(--primary);
+            border-color: var(--primary);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+            background-size: 14px;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .category-hint {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            margin-top: 16px;
+        }
+
+        .category-error {
+            text-align: center;
+            color: #ef4444;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        .category-error.visible {
+            display: block;
+        }
+
         /* ===== Icon Inputs ===== */
         .icon-input-group {
             margin-bottom: 16px;
@@ -254,7 +359,7 @@
             display: block;
         }
 
-        /* ===== Selectable Service Cards ===== */
+        /* ===== Service Sub-Cards ===== */
         .service-cards-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -319,7 +424,6 @@
             line-height: 1.3;
         }
 
-        /* Check indicator */
         .service-card::after {
             content: '';
             position: absolute;
@@ -339,6 +443,11 @@
             background-size: 14px;
             background-position: center;
             background-repeat: no-repeat;
+        }
+
+        /* Hidden service cards */
+        .service-card.hidden {
+            display: none;
         }
 
         /* ===== Select Dropdown ===== */
@@ -479,6 +588,21 @@
                 padding: 32px 20px;
             }
 
+            .category-cards {
+                max-width: 100%;
+                gap: 14px;
+            }
+
+            .category-card {
+                padding: 28px 16px;
+                min-height: 160px;
+            }
+
+            .category-card-icon {
+                width: 56px;
+                height: 56px;
+            }
+
             .service-cards-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -522,6 +646,20 @@
             .service-card-label {
                 font-size: 0.75rem;
             }
+
+            .category-card {
+                padding: 24px 12px;
+                min-height: 140px;
+            }
+
+            .category-card-icon {
+                width: 48px;
+                height: 48px;
+            }
+
+            .category-card-label {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -554,21 +692,71 @@
                 <p>Answer a few quick questions and we'll get back to you within 24 hours.</p>
             </div>
 
-            <!-- Progress Bar -->
+            <!-- Progress Bar (5 segments now) -->
             <div class="progress-bar">
                 <div class="progress-segment filled" data-seg="1"></div>
                 <div class="progress-segment" data-seg="2"></div>
                 <div class="progress-segment" data-seg="3"></div>
                 <div class="progress-segment" data-seg="4"></div>
+                <div class="progress-segment" data-seg="5"></div>
             </div>
 
             <div class="quote-card">
                 <form id="quote-form" novalidate>
 
-                    <!-- STEP 1: Contact Info -->
+                    <!-- STEP 1: Choose Service Category -->
                     <div class="form-step active" data-step="1">
+                        <h2 class="step-heading">What Do You Need?</h2>
+                        <p class="step-subtitle">Select one or both services.</p>
+
+                        <div class="category-cards">
+                            <label class="category-card" id="cat-card-windows">
+                                <input type="checkbox" name="categories" value="windows" id="cat-windows">
+                                <!-- Window icon -->
+                                <svg class="category-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.3">
+                                    <rect x="2" y="2" width="20" height="20" rx="3" />
+                                    <line x1="2" y1="12" x2="22" y2="12" />
+                                    <line x1="12" y1="2" x2="12" y2="22" />
+                                    <path d="M5.5 5.5l3 3" opacity="0.4" stroke-width="1.5" />
+                                    <path d="M5.5 15.5l3 3" opacity="0.4" stroke-width="1.5" />
+                                    <path d="M15.5 5.5l3 3" opacity="0.4" stroke-width="1.5" />
+                                    <path d="M15.5 15.5l3 3" opacity="0.4" stroke-width="1.5" />
+                                </svg>
+                                <span class="category-card-label">Window Washing</span>
+                            </label>
+
+                            <label class="category-card" id="cat-card-detailing">
+                                <input type="checkbox" name="categories" value="detailing" id="cat-detailing">
+                                <!-- Car icon -->
+                                <svg class="category-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.3">
+                                    <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                    <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
+                                    <line x1="9" y1="17" x2="15" y2="17" />
+                                    <path d="M5 6h7" />
+                                </svg>
+                                <span class="category-card-label">Car Detailing</span>
+                            </label>
+                        </div>
+
+                        <p class="category-hint">You can select both!</p>
+                        <p class="category-error" id="cat-error">Please select at least one service</p>
+
+                        <div class="step-nav">
+                            <button type="button" class="btn-next" onclick="nextStep()">
+                                Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Contact Info -->
+                    <div class="form-step" data-step="2">
                         <h2 class="step-heading">Let's Get to Know You!</h2>
-                        <p class="step-subtitle">We'll use this info to send your quote.</p>
+                        <p class="step-subtitle">We'll use this to send your quote.</p>
 
                         <div class="icon-input-group">
                             <label for="name">Full Name</label>
@@ -607,7 +795,13 @@
                             </div>
                         </div>
 
-                        <div class="step-nav">
+                        <div class="step-nav step-nav-spread">
+                            <button type="button" class="btn-back" onclick="prevStep()">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                                </svg>
+                                Back
+                            </button>
                             <button type="button" class="btn-next" onclick="nextStep()">
                                 Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -616,13 +810,14 @@
                         </div>
                     </div>
 
-                    <!-- STEP 2: Services (card selection) -->
-                    <div class="form-step" data-step="2">
+                    <!-- STEP 3: Sub-Services (filtered by category) -->
+                    <div class="form-step" data-step="3">
                         <h2 class="step-heading">What Services?</h2>
                         <p class="step-subtitle">Select everything you're interested in.</p>
 
-                        <div class="service-cards-grid">
-                            <label class="service-card" id="card-ext-windows">
+                        <div class="service-cards-grid" id="services-grid">
+                            <!-- Window Washing services -->
+                            <label class="service-card" data-category="windows" id="card-ext-windows">
                                 <input type="checkbox" name="services" value="Exterior Windows">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -634,7 +829,7 @@
                                 <span class="service-card-label">Exterior Windows</span>
                             </label>
 
-                            <label class="service-card" id="card-int-windows">
+                            <label class="service-card" data-category="windows" id="card-int-windows">
                                 <input type="checkbox" name="services" value="Interior Windows">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -646,7 +841,7 @@
                                 <span class="service-card-label">Interior Windows</span>
                             </label>
 
-                            <label class="service-card" id="card-screens">
+                            <label class="service-card" data-category="windows" id="card-screens">
                                 <input type="checkbox" name="services" value="Screen Cleaning">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -661,7 +856,7 @@
                                 <span class="service-card-label">Screen Cleaning</span>
                             </label>
 
-                            <label class="service-card" id="card-skylights">
+                            <label class="service-card" data-category="windows" id="card-skylights">
                                 <input type="checkbox" name="services" value="Skylights">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -672,7 +867,7 @@
                                 <span class="service-card-label">Skylights</span>
                             </label>
 
-                            <label class="service-card" id="card-gutters">
+                            <label class="service-card" data-category="windows" id="card-gutters">
                                 <input type="checkbox" name="services" value="Gutter Cleaning">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -683,7 +878,8 @@
                                 <span class="service-card-label">Gutter Cleaning</span>
                             </label>
 
-                            <label class="service-card" id="card-ext-detail">
+                            <!-- Car Detailing services -->
+                            <label class="service-card" data-category="detailing" id="card-ext-detail">
                                 <input type="checkbox" name="services" value="Exterior Detail">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -692,10 +888,10 @@
                                     <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
                                     <line x1="9" y1="17" x2="15" y2="17" />
                                 </svg>
-                                <span class="service-card-label">Car Exterior Detail</span>
+                                <span class="service-card-label">Exterior Detail</span>
                             </label>
 
-                            <label class="service-card" id="card-int-detail">
+                            <label class="service-card" data-category="detailing" id="card-int-detail">
                                 <input type="checkbox" name="services" value="Interior Detail">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -703,10 +899,10 @@
                                     <path d="M7 8V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" />
                                     <circle cx="12" cy="14" r="2" />
                                 </svg>
-                                <span class="service-card-label">Car Interior Detail</span>
+                                <span class="service-card-label">Interior Detail</span>
                             </label>
 
-                            <label class="service-card" id="card-wax">
+                            <label class="service-card" data-category="detailing" id="card-wax">
                                 <input type="checkbox" name="services" value="Spray Wax">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -715,7 +911,7 @@
                                 <span class="service-card-label">Spray Wax</span>
                             </label>
 
-                            <label class="service-card" id="card-pet">
+                            <label class="service-card" data-category="detailing" id="card-pet">
                                 <input type="checkbox" name="services" value="Pet Hair Removal">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -744,8 +940,8 @@
                         </div>
                     </div>
 
-                    <!-- STEP 3: Message -->
-                    <div class="form-step" data-step="3">
+                    <!-- STEP 4: Message -->
+                    <div class="form-step" data-step="4">
                         <h2 class="step-heading">Tell Us More</h2>
                         <p class="step-subtitle">Any details or special requests? (optional)</p>
 
@@ -767,8 +963,8 @@
                         </div>
                     </div>
 
-                    <!-- STEP 4: Address + Submit -->
-                    <div class="form-step" data-step="4">
+                    <!-- STEP 5: Address + Submit -->
+                    <div class="form-step" data-step="5">
                         <h2 class="step-heading">Where Are You Located?</h2>
                         <p class="step-subtitle">Almost done! Just need your address.</p>
 
@@ -931,7 +1127,7 @@
     <script>
         // ===== Multi-Step Logic =====
         let currentStep = 1;
-        const totalSteps = 4;
+        const totalSteps = 5;
 
         function updateProgress() {
             document.querySelectorAll('.progress-segment').forEach(el => {
@@ -950,9 +1146,40 @@
             target.classList.add('active', direction === 'forward' ? 'slide-in-right' : 'slide-in-left');
         }
 
+        // Filter service cards based on category selection
+        function filterServices() {
+            const windowsChecked = document.getElementById('cat-windows').checked;
+            const detailingChecked = document.getElementById('cat-detailing').checked;
+
+            document.querySelectorAll('.service-card').forEach(card => {
+                const cat = card.dataset.category;
+                if ((cat === 'windows' && windowsChecked) || (cat === 'detailing' && detailingChecked)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                    // Uncheck hidden services
+                    const cb = card.querySelector('input[type="checkbox"]');
+                    cb.checked = false;
+                    card.classList.remove('selected');
+                }
+            });
+        }
+
         function validateStep(step) {
             let valid = true;
+
             if (step === 1) {
+                const windowsChecked = document.getElementById('cat-windows').checked;
+                const detailingChecked = document.getElementById('cat-detailing').checked;
+                if (!windowsChecked && !detailingChecked) {
+                    document.getElementById('cat-error').classList.add('visible');
+                    valid = false;
+                } else {
+                    document.getElementById('cat-error').classList.remove('visible');
+                }
+            }
+
+            if (step === 2) {
                 const name = document.getElementById('name');
                 const email = document.getElementById('email');
                 if (!name.value.trim()) {
@@ -972,7 +1199,8 @@
                     document.getElementById('email-error').classList.remove('visible');
                 }
             }
-            if (step === 4) {
+
+            if (step === 5) {
                 const street = document.getElementById('street');
                 const city = document.getElementById('city');
                 if (!street.value.trim()) {
@@ -992,12 +1220,19 @@
                     document.getElementById('city-error').classList.remove('visible');
                 }
             }
+
             return valid;
         }
 
         function nextStep() {
             if (!validateStep(currentStep)) return;
-            if (currentStep === 1) savePartialLead();
+
+            // Filter services when leaving step 1
+            if (currentStep === 1) filterServices();
+
+            // Save partial lead after step 2 (contact)
+            if (currentStep === 2) savePartialLead();
+
             if (currentStep < totalSteps) {
                 currentStep++;
                 showStep(currentStep, 'forward');
@@ -1030,8 +1265,18 @@
             }).catch(() => { });
         }
 
-        // ===== Service Card Selection =====
+        // ===== Init =====
         document.addEventListener('DOMContentLoaded', function () {
+            // Category card toggle
+            document.querySelectorAll('.category-card').forEach(card => {
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', () => {
+                    card.classList.toggle('selected', checkbox.checked);
+                    document.getElementById('cat-error').classList.remove('visible');
+                });
+            });
+
+            // Service card toggle
             document.querySelectorAll('.service-card').forEach(card => {
                 const checkbox = card.querySelector('input[type="checkbox"]');
                 checkbox.addEventListener('change', () => {
@@ -1048,35 +1293,23 @@
                 });
             });
 
-            // URL param for service pre-selection
+            // URL param pre-selection
             const urlParams = new URLSearchParams(window.location.search);
             const service = urlParams.get('service');
-            if (service === 'windows') {
-                ['card-ext-windows', 'card-int-windows'].forEach(id => {
-                    const card = document.getElementById(id);
-                    if (card) {
-                        card.querySelector('input').checked = true;
-                        card.classList.add('selected');
-                    }
-                });
-            } else if (service === 'detailing') {
-                ['card-ext-detail', 'card-int-detail'].forEach(id => {
-                    const card = document.getElementById(id);
-                    if (card) {
-                        card.querySelector('input').checked = true;
-                        card.classList.add('selected');
-                    }
-                });
+            if (service === 'windows' || service === 'detailing') {
+                const catId = service === 'windows' ? 'cat-windows' : 'cat-detailing';
+                const cardId = service === 'windows' ? 'cat-card-windows' : 'cat-card-detailing';
+                document.getElementById(catId).checked = true;
+                document.getElementById(cardId).classList.add('selected');
             }
         });
 
         // ===== Form Submit =====
-        const quoteForm = document.getElementById('quote-form');
-        quoteForm.addEventListener('submit', async function (e) {
+        document.getElementById('quote-form').addEventListener('submit', async function (e) {
             e.preventDefault();
-            if (!validateStep(4)) return;
+            if (!validateStep(5)) return;
 
-            const formData = new FormData(quoteForm);
+            const formData = new FormData(this);
             const fullAddress = `${formData.get('street')}, ${formData.get('city')}, ${formData.get('state')}`;
             const data = {
                 name: formData.get('name'),
@@ -1087,7 +1320,7 @@
                 message: formData.get('message') || 'No additional details'
             };
 
-            const submitBtn = quoteForm.querySelector('.btn-submit');
+            const submitBtn = this.querySelector('.btn-submit');
             const originalHTML = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span>Sending...</span>';
             submitBtn.disabled = true;
@@ -1101,8 +1334,8 @@
                 if (response.ok) {
                     submitBtn.innerHTML = '<span>✓ Quote Request Sent!</span>';
                     submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
-                    quoteForm.reset();
-                    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+                    this.reset();
+                    document.querySelectorAll('.service-card, .category-card').forEach(c => c.classList.remove('selected'));
                     setTimeout(() => {
                         submitBtn.innerHTML = originalHTML;
                         submitBtn.style.background = '';
