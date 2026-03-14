@@ -958,15 +958,15 @@
                         <p class="step-subtitle">Almost done! Just need your address.</p>
 
                         <div class="icon-input-group">
-                            <label for="street">Street Address</label>
-                            <div class="icon-input" id="street-wrap">
+                            <label for="street">Street Address <span
+                                    style="color: var(--gray-400); font-weight: 400;">(optional)</span></label>
+                            <div class="icon-input">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                                     <circle cx="12" cy="10" r="3" />
                                 </svg>
-                                <input type="text" id="street" name="street" placeholder="123 Main St" required>
+                                <input type="text" id="street" name="street" placeholder="123 Main St">
                             </div>
-                            <span class="error-msg" id="street-error">Please enter your street address</span>
                         </div>
 
                         <div class="input-row">
@@ -1087,16 +1087,7 @@
                 }
             }
             if (step === 5) {
-                const street = document.getElementById('street');
                 const city = document.getElementById('city');
-                if (!street.value.trim()) {
-                    document.getElementById('street-wrap').classList.add('error');
-                    document.getElementById('street-error').classList.add('visible');
-                    valid = false;
-                } else {
-                    document.getElementById('street-wrap').classList.remove('error');
-                    document.getElementById('street-error').classList.remove('visible');
-                }
                 if (!city.value.trim()) {
                     document.getElementById('city-wrap').classList.add('error');
                     document.getElementById('city-error').classList.add('visible');
