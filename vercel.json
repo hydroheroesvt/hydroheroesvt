@@ -5,6 +5,14 @@
             "destination": "/api/send-quote"
         },
         {
+            "source": "/windows",
+            "destination": "/index.html"
+        },
+        {
+            "source": "/detailing",
+            "destination": "/index.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/$1"
         }

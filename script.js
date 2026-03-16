@@ -26,22 +26,68 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
+    // Determine initial service from URL path
+    function getServiceFromPath() {
+        const path = window.location.pathname;
+        if (path === '/detailing') return 'detailing';
+        return 'windows';
+    }
+
+    // Activate a service (update toggle buttons + content), optionally push URL
+    function activateService(service, pushUrl, scrollToTop) {
+        // Update active button
+        toggleButtons.forEach(btn => btn.classList.remove('active'));
+        const activeBtn = document.querySelector(`.toggle-btn[data-service="${service}"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+
+        if (scrollToTop) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Push URL state
+        if (pushUrl) {
+            const newPath = service === 'detailing' ? '/detailing' : '/windows';
+            history.pushState({ service: service }, '', newPath);
+        }
+
+        // Update page title and meta description
+        const titleEl = document.querySelector('title');
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (service === 'detailing') {
+            if (titleEl) titleEl.textContent = 'Hydro Heroes | Professional Car Detailing';
+            if (metaDesc) metaDesc.setAttribute('content', 'Hydro Heroes provides premium car detailing services in Vermont. From express washes to full ceramic coatings. Get a free quote today!');
+        } else {
+            if (titleEl) titleEl.textContent = 'Hydro Heroes | Professional Window Washing';
+            if (metaDesc) metaDesc.setAttribute('content', 'Hydro Heroes provides premium window washing services in Vermont. Crystal clear views, guaranteed satisfaction. Get a free quote today!');
+        }
+
+        // Update content with animation
+        updateContent(service);
+    }
+
     // Toggle click handler
     toggleButtons.forEach(button => {
         button.addEventListener('click', function () {
             const service = this.dataset.service;
-
-            // Update active button
-            toggleButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            // Scroll to top of page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            // Update content with animation
-            updateContent(service);
+            activateService(service, true, true);
         });
     });
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function (e) {
+        const service = (e.state && e.state.service) ? e.state.service : getServiceFromPath();
+        activateService(service, false, false);
+    });
+
+    // On initial page load, activate the correct service based on URL
+    const initialService = getServiceFromPath();
+    if (initialService === 'detailing') {
+        // Replace current history state so back button works from here
+        history.replaceState({ service: 'detailing' }, '', '/detailing');
+        activateService('detailing', false, false);
+    } else {
+        history.replaceState({ service: 'windows' }, '', window.location.pathname === '/windows' ? '/windows' : window.location.pathname);
+    }
 
     function updateContent(service) {
         // Fade out
