@@ -294,10 +294,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to update all quote button URLs based on active service
     function updateQuoteLinks(service) {
-        const quoteUrl = service === 'detailing' ? 'quote.html?service=detailing' : 'quote.html';
+        const quoteUrl = service === 'detailing' ? '/quote?service=detailing' : '/quote';
 
         // Update all quote links on the page
-        document.querySelectorAll('a[href^="quote.html"]').forEach(link => {
+        document.querySelectorAll('a[href^="/quote"]').forEach(link => {
             link.href = quoteUrl;
         });
     }
