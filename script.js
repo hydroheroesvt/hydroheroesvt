@@ -425,6 +425,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Mobile toggle hide/show on scroll direction
+    const serviceToggle = document.querySelector('.service-toggle');
+    let lastScrollY = window.scrollY;
+
+    if (serviceToggle) {
+        window.addEventListener('scroll', function () {
+            if (window.innerWidth > 768) return; // Only on mobile
+
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 120) {
+                // Scrolling down — hide toggle
+                serviceToggle.classList.add('toggle-hidden');
+            } else {
+                // Scrolling up — show toggle
+                serviceToggle.classList.remove('toggle-hidden');
+            }
+
+            lastScrollY = currentScrollY;
+        });
+    }
+
     // Intersection Observer for animations
     const observerOptions = {
         threshold: 0.1,
