@@ -122,6 +122,7 @@ ul {
     background: var(--gray-100);
     padding: 4px;
     border-radius: var(--radius-full);
+    border: 1.5px solid var(--primary);
 }
 
 .toggle-btn {
@@ -147,7 +148,7 @@ ul {
 .toggle-btn.active {
     background: var(--primary);
     color: var(--white);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 12px rgba(10, 37, 64, 0.35);
 }
 
 .toggle-icon {
