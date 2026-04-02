@@ -145,8 +145,8 @@ ul {
 }
 
 .toggle-btn.active {
-    background: var(--white);
-    color: var(--primary);
+    background: var(--primary);
+    color: var(--white);
     box-shadow: var(--shadow);
 }
 
