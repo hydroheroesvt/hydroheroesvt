@@ -21,6 +21,30 @@
             "destination": "/services.html"
         },
         {
+            "source": "/services/exterior-window-cleaning",
+            "destination": "/exterior-window-cleaning.html"
+        },
+        {
+            "source": "/services/interior-window-cleaning",
+            "destination": "/interior-window-cleaning.html"
+        },
+        {
+            "source": "/services/screen-cleaning",
+            "destination": "/screen-cleaning.html"
+        },
+        {
+            "source": "/services/skylight-washing",
+            "destination": "/skylight-washing.html"
+        },
+        {
+            "source": "/services/track-detailing",
+            "destination": "/track-detailing.html"
+        },
+        {
+            "source": "/services/commercial-cleaning",
+            "destination": "/commercial-cleaning.html"
+        },
+        {
             "source": "/privacy-policy",
             "destination": "/privacy-policy.html"
         },
