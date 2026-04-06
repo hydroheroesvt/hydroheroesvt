@@ -1193,8 +1193,8 @@
                     body: JSON.stringify(data)
                 });
                 if (res.ok) {
-                    btn.innerHTML = '<span>✓ Quote Request Sent!</span>';
-                    btn.style.background = 'linear-gradient(135deg, #3b9eff 0%, #60b3ff 100%)';
+                    btn.innerHTML = '<span>✓ One of our experts will reach out shortly!</span>';
+                    btn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
                     this.reset();
                     document.querySelectorAll('.service-card, .category-card').forEach(c => c.classList.remove('selected'));
                     setTimeout(() => {
@@ -1204,9 +1204,14 @@
                         currentStep = 1;
                         showStep(1, 'backward');
                         updateProgress();
-                    }, 3000);
-                } else { throw new Error(); }
-            } catch {
+                    }, 4000);
+                } else {
+                    const errData = await res.json().catch(() => ({}));
+                    console.error('Quote API error:', res.status, errData);
+                    throw new Error(errData.error || 'Server error');
+                }
+            } catch (err) {
+                console.error('Quote submission failed:', err);
                 btn.innerHTML = '<span>Error - Please call us</span>';
                 btn.style.background = 'linear-gradient(135deg, #ef4444 0%, #f87171 100%)';
                 setTimeout(() => {
