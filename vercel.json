@@ -17,6 +17,10 @@
             "destination": "/quote.html"
         },
         {
+            "source": "/services",
+            "destination": "/services.html"
+        },
+        {
             "source": "/privacy-policy",
             "destination": "/privacy-policy.html"
         },

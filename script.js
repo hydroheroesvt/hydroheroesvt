@@ -137,9 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Clear detailing checkboxes
                     detailingCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
                 }
-                // Show windows services grid and comparison section
-                const windowsServicesGrid = document.getElementById('windows-services-grid');
-                if (windowsServicesGrid) windowsServicesGrid.style.display = 'grid';
+                // Show comparison section
                 const comparisonSection = document.getElementById('comparison');
                 if (comparisonSection) comparisonSection.style.display = 'block';
                 // Hide car comparison section and columns gallery
@@ -178,9 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Clear windows checkboxes
                     windowsCheckboxes.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
                 }
-                // Hide windows services grid and comparison section on detailing page
-                const windowsServicesGrid = document.getElementById('windows-services-grid');
-                if (windowsServicesGrid) windowsServicesGrid.style.display = 'none';
+                // Hide comparison section on detailing page
                 const comparisonSection = document.getElementById('comparison');
                 if (comparisonSection) comparisonSection.style.display = 'none';
                 // Show car comparison section and columns gallery
