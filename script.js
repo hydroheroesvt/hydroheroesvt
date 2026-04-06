@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (response.ok) {
                     // Success
-                    submitBtn.innerHTML = '<span>✓ Quote Requested!</span>';
+                    submitBtn.innerHTML = '<span>✓ One of our experts will reach out shortly!</span>';
                     submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #34d399 100%)';
                     this.reset();
                 } else {
