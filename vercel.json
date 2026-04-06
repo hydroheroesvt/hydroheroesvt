@@ -45,6 +45,22 @@
             "destination": "/commercial-cleaning.html"
         },
         {
+            "source": "/services/exterior-detail",
+            "destination": "/exterior-detail.html"
+        },
+        {
+            "source": "/services/interior-detail",
+            "destination": "/interior-detail.html"
+        },
+        {
+            "source": "/services/pet-hair-removal",
+            "destination": "/pet-hair-removal.html"
+        },
+        {
+            "source": "/services/spray-wax",
+            "destination": "/spray-wax.html"
+        },
+        {
             "source": "/privacy-policy",
             "destination": "/privacy-policy.html"
         },
