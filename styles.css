@@ -1287,6 +1287,21 @@ ul {
     padding: 18px;
 }
 
+.services-page-category-heading {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gray-700);
+    margin-bottom: 24px;
+    margin-top: 50px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary);
+    display: inline-block;
+}
+
+.services-page-category-heading:first-of-type {
+    margin-top: 0;
+}
+
 .services-page-cta {
     text-align: center;
     margin-top: 50px;
