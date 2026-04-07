@@ -61,6 +61,14 @@
             "destination": "/spray-wax.html"
         },
         {
+            "source": "/services/floormat-restoration",
+            "destination": "/floormat-restoration.html"
+        },
+        {
+            "source": "/services/clay-bar-treatment",
+            "destination": "/clay-bar-treatment.html"
+        },
+        {
             "source": "/privacy-policy",
             "destination": "/privacy-policy.html"
         },
