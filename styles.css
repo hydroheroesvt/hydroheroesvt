@@ -2612,8 +2612,8 @@ a.contact-value:hover {
         flex-direction: column;
         padding-top: 80px;
         /* Reduced further to show more bg */
-        padding-bottom: 40px;
-        /* Compact bottom */
+        padding-bottom: 140px;
+        /* Increased to prevent overlap with wave */
         padding-left: 20px;
         /* Standard mobile padding for left align */
         padding-right: 20px;
