@@ -2827,6 +2827,170 @@ a.contact-value:hover {
     font-style: italic;
 }
 
+/* ===== MEET THE OWNERS ===== */
+.meet-owners-section {
+    text-align: center;
+    margin: 80px 0 60px;
+    padding: 80px 0;
+    position: relative;
+}
+
+.meet-owners-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--primary));
+    border-radius: 2px;
+}
+
+.owners-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    background: linear-gradient(135deg, rgba(59, 158, 255, 0.1), rgba(0, 212, 170, 0.1));
+    border: 1px solid rgba(59, 158, 255, 0.2);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.owners-title {
+    font-size: 2.5rem;
+    color: var(--primary);
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.owners-subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-500);
+    max-width: 500px;
+    margin: 0 auto 50px;
+    line-height: 1.7;
+}
+
+.owners-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.owner-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl, 20px);
+    padding: 40px 30px 36px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.owner-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.owner-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.owner-card:hover::before {
+    opacity: 1;
+}
+
+.owner-image-wrapper {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--gray-100);
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.owner-card:hover .owner-image-wrapper {
+    border-color: var(--accent);
+    box-shadow: 0 8px 30px rgba(59, 158, 255, 0.2);
+}
+
+.owner-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.owner-card:hover .owner-photo {
+    transform: scale(1.05);
+}
+
+.owner-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.owner-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0;
+}
+
+.owner-role {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+@media (max-width: 600px) {
+    .owners-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        max-width: 320px;
+    }
+
+    .owners-title {
+        font-size: 1.8rem;
+    }
+
+    .owner-image-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+
+    .owner-card {
+        padding: 30px 24px 28px;
+    }
+
+    .meet-owners-section {
+        margin: 40px 0 30px;
+        padding: 50px 0;
+    }
+}
+
 /* About Page Mobile Fixes */
 @media (max-width: 768px) {
     .about-hero {
