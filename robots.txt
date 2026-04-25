@@ -4,4 +4,4 @@ Allow: /
 # Prevent indexing of specific API or draft routes if any
 Disallow: /api/
 
-Sitemap: https://hydroheroesvt.com/sitemap.xml
+Sitemap: https://hydrovt.com/sitemap.xml
