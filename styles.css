@@ -116,6 +116,46 @@ ul {
     letter-spacing: 1px;
 }
 
+.service-toggle:hover {
+    border-color: rgba(0, 155, 255, 0.4);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-call-mobile {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 155, 255, 0.1);
+    color: var(--accent);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-call-mobile:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.nav-call-mobile svg {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-cta {
+    background: var(--gradient);
+    padding: 4px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--primary);
+}
+
 .service-toggle {
     display: flex;
     gap: 4px;
@@ -2114,6 +2154,14 @@ a.contact-value:hover {
         font-size: 1rem;
     }
 
+    .nav-actions {
+        margin-left: auto;
+    }
+
+    .nav-call-mobile {
+        display: flex;
+    }
+
     .service-toggle {
         order: 3;
         width: 100%;
@@ -2140,8 +2188,8 @@ a.contact-value:hover {
     }
 
     .nav-cta {
-        padding: 10px 18px;
-        font-size: 0.8rem;
+        padding: 10px 16px;
+        font-size: 0.9rem;
     }
 
     .hero {

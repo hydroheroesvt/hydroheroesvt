@@ -129,6 +129,14 @@
             "destination": "/hartford-vt.html"
         },
         {
+            "source": "/fairlee-vt",
+            "destination": "/fairlee-vt.html"
+        },
+        {
+            "source": "/quechee-vt",
+            "destination": "/quechee-vt.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/$1"
         }
