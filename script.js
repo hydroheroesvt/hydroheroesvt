@@ -502,4 +502,53 @@ document.addEventListener('DOMContentLoaded', function () {
         // Initialize at 50%
         updateSlider(50);
     });
+
+    // ===== REVIEWS CAROUSEL =====
+    const reviewsTrack = document.getElementById('reviews-track');
+    const reviewsLeftBtn = document.querySelector('.reviews-arrow-left');
+    const reviewsRightBtn = document.querySelector('.reviews-arrow-right');
+
+    if (reviewsTrack && reviewsLeftBtn && reviewsRightBtn) {
+        let reviewIndex = 0;
+
+        function getCardsPerView() {
+            if (window.innerWidth <= 600) return 1;
+            if (window.innerWidth <= 900) return 2;
+            return 3;
+        }
+
+        function getCardWidth() {
+            const card = reviewsTrack.querySelector('.review-card');
+            if (!card) return 0;
+            const style = getComputedStyle(reviewsTrack);
+            const gap = parseInt(style.gap) || 20;
+            return card.offsetWidth + gap;
+        }
+
+        function updateReviewsCarousel() {
+            const totalCards = reviewsTrack.querySelectorAll('.review-card').length;
+            const perView = getCardsPerView();
+            const maxIndex = Math.max(0, totalCards - perView);
+            reviewIndex = Math.min(reviewIndex, maxIndex);
+            const offset = reviewIndex * getCardWidth();
+            reviewsTrack.style.transform = `translateX(-${offset}px)`;
+        }
+
+        reviewsLeftBtn.addEventListener('click', () => {
+            reviewIndex = Math.max(0, reviewIndex - 1);
+            updateReviewsCarousel();
+        });
+
+        reviewsRightBtn.addEventListener('click', () => {
+            const totalCards = reviewsTrack.querySelectorAll('.review-card').length;
+            const perView = getCardsPerView();
+            const maxIndex = Math.max(0, totalCards - perView);
+            reviewIndex = Math.min(maxIndex, reviewIndex + 1);
+            updateReviewsCarousel();
+        });
+
+        window.addEventListener('resize', () => {
+            updateReviewsCarousel();
+        });
+    }
 });
