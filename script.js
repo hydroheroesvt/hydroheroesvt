@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const toggleButtons = document.querySelectorAll('.toggle-btn');
     const heroTitle = document.getElementById('hero-title');
     const heroSubtitle = document.getElementById('hero-subtitle');
+    const heroBadgeText = document.getElementById('hero-badge-text');
     const aboutTeaserTitle = document.getElementById('about-teaser-title');
     const aboutTeaserImage = document.getElementById('about-teaser-image');
     const gallerySection = document.getElementById('gallery');
@@ -13,12 +14,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // Content for each service
     const content = {
         windows: {
+            heroBadge: 'Top Rated Window Cleaners in the Upper Valley',
             heroTitle: '<span class="title-line">Dirty Windows?</span><span class="title-accent">We Can Fix That.</span>',
             heroSubtitle: 'Professional window washing that brings the sparkle back to your home or business. Crystal clear views, guaranteed satisfaction.',
             aboutTeaserTitle: 'More Than Just Window Cleaners',
             aboutTeaserImage: 'images/teaser_windows.jpg'
         },
         detailing: {
+            heroBadge: 'Top Rated Car Detailers in the Upper Valley',
             heroTitle: '<span class="title-line">Dirty Car?</span><span class="title-accent">We\'ll Make It Shine.</span>',
             heroSubtitle: 'Premium car detailing that makes your vehicle look showroom-ready. From express washes to full ceramic coatings.',
             aboutTeaserTitle: 'More Than Just Car Detailers',
@@ -95,6 +98,10 @@ document.addEventListener('DOMContentLoaded', function () {
         heroTitle.style.transform = 'translateY(20px)';
         heroSubtitle.style.opacity = '0';
         heroSubtitle.style.transform = 'translateY(20px)';
+        if (heroBadgeText) {
+            heroBadgeText.style.opacity = '0';
+            heroBadgeText.style.transform = 'translateY(20px)';
+        }
 
         if (aboutTeaserTitle) {
             aboutTeaserTitle.style.opacity = '0';
@@ -108,6 +115,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         setTimeout(() => {
             // Update content
+            if (heroBadgeText) {
+                heroBadgeText.textContent = content[service].heroBadge;
+            }
             heroTitle.innerHTML = content[service].heroTitle;
             heroSubtitle.textContent = content[service].heroSubtitle;
 
@@ -216,11 +226,18 @@ document.addEventListener('DOMContentLoaded', function () {
             heroTitle.style.transform = 'translateY(0)';
             heroSubtitle.style.opacity = '1';
             heroSubtitle.style.transform = 'translateY(0)';
+            if (heroBadgeText) {
+                heroBadgeText.style.opacity = '1';
+                heroBadgeText.style.transform = 'translateY(0)';
+            }
         }, 300);
     }
 
     heroTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     heroSubtitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    if (heroBadgeText) {
+        heroBadgeText.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    }
     if (aboutTeaserTitle) {
         aboutTeaserTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
     }
