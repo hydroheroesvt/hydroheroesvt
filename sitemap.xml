@@ -40,4 +40,11 @@
   <url><loc>https://hydrovt.com/spray-wax.html</loc><priority>0.7</priority></url>
   <url><loc>https://hydrovt.com/pet-hair-removal.html</loc><priority>0.7</priority></url>
   <url><loc>https://hydrovt.com/floormat-restoration.html</loc><priority>0.7</priority></url>
+
+  <!-- Location Pages -->
+  <url><loc>https://hydrovt.com/hanover-nh</loc><priority>0.8</priority></url>
+  <url><loc>https://hydrovt.com/lebanon-nh</loc><priority>0.8</priority></url>
+  <url><loc>https://hydrovt.com/woodstock-vt</loc><priority>0.8</priority></url>
+  <url><loc>https://hydrovt.com/norwich-vt</loc><priority>0.8</priority></url>
+  <url><loc>https://hydrovt.com/hartford-vt</loc><priority>0.8</priority></url>
 </urlset>

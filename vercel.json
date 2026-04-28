@@ -109,6 +109,26 @@
             "destination": "/terms-of-service.html"
         },
         {
+            "source": "/hanover-nh",
+            "destination": "/hanover-nh.html"
+        },
+        {
+            "source": "/lebanon-nh",
+            "destination": "/lebanon-nh.html"
+        },
+        {
+            "source": "/woodstock-vt",
+            "destination": "/woodstock-vt.html"
+        },
+        {
+            "source": "/norwich-vt",
+            "destination": "/norwich-vt.html"
+        },
+        {
+            "source": "/hartford-vt",
+            "destination": "/hartford-vt.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/$1"
         }
