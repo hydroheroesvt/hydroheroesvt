@@ -149,13 +149,6 @@ ul {
     height: 20px;
 }
 
-.nav-cta {
-    background: var(--gradient);
-    padding: 4px;
-    border-radius: var(--radius-full);
-    border: 1.5px solid var(--primary);
-}
-
 .service-toggle {
     display: flex;
     gap: 4px;

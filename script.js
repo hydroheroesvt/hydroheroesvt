@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         detailing: {
             heroBadge: 'Top Rated Car Detailers in the Upper Valley',
-            heroTitle: '<span class="title-accent" style="display:inline;">We\'ll Make It Shine.</span>',
+            heroTitle: '<span class="title-line">Dirty Car?</span><span class="title-accent" style="white-space: nowrap;">We\'ll Make It Shine.</span>',
             heroSubtitle: 'Premium car detailing that makes your vehicle look showroom-ready. From express washes to full ceramic coatings.',
             aboutTeaserTitle: 'More Than Just Car Detailers',
             aboutTeaserImage: 'images/teaser_car.jpg'
