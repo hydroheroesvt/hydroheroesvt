@@ -2153,8 +2153,8 @@ a.contact-value:hover {
 
     .nav-call-mobile {
         display: flex;
-        background: #33e5b5;
-        color: #1e293b;
+        background: var(--gradient-accent);
+        color: var(--primary);
         width: auto;
         height: auto;
         padding: 8px 24px;
@@ -2163,6 +2163,7 @@ a.contact-value:hover {
         font-weight: 700;
         font-size: 1.05rem;
         text-decoration: none;
+        box-shadow: var(--shadow-glow);
     }
 
     .service-toggle {
