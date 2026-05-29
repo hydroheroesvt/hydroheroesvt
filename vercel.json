@@ -109,6 +109,10 @@
             "destination": "/terms-of-service.html"
         },
         {
+            "source": "/service-areas",
+            "destination": "/service-areas.html"
+        },
+        {
             "source": "/hanover-nh",
             "destination": "/hanover-nh.html"
         },
