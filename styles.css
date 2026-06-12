@@ -2454,25 +2454,15 @@ a.contact-value:hover {
     border-bottom: 1px solid var(--gray-100);
 }
 
-.meet-owners-teaser {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.meet-owners-teaser .section-description {
-    margin-bottom: 40px;
-}
-
 .owners-grid-teaser {
     display: flex;
-    justify-content: center;
-    gap: 48px;
-    margin-top: 8px;
+    gap: 24px;
+    align-items: flex-start;
 }
 
 .owners-grid-teaser .owner-card {
-    max-width: 240px;
+    flex: 1;
+    max-width: 220px;
 }
 
 .about-grid {
