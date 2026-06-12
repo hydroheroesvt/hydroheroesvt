@@ -2783,22 +2783,23 @@ a.contact-value:hover {
     }
 
     .windows-hero .hero-content {
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: center;
         text-align: center;
-        min-height: 70vh;
-        padding-bottom: 40px;
+        min-height: auto;
+        padding-top: 20px;
+        padding-bottom: 0;
     }
 
     .windows-hero .hero-title {
         text-align: center;
         font-size: 2.5rem;
-        margin-bottom: 32px;
-        line-height: 1.3;
+        margin-bottom: 16px;
+        line-height: 1.15;
     }
 
     .windows-hero .hero-title .title-line {
-        margin-bottom: 8px;
+        margin-bottom: 0;
     }
 
     .windows-hero .hero-ctas .btn {
