@@ -2462,11 +2462,12 @@ a.contact-value:hover {
 
 .owners-grid-teaser .owner-card {
     flex: 1;
-    max-width: 220px;
+    max-width: 260px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 30px 20px 28px;
 }
 
 .owners-grid-teaser .owner-image-wrapper {
