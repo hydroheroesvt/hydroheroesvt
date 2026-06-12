@@ -232,7 +232,7 @@ ul {
 }
 
 .hero.windows-hero .hero-bg {
-    background: linear-gradient(135deg, rgba(8, 48, 78, 0.90) 0%, rgba(35, 82, 125, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.45) 100%);
 }
 
 .hero.detailing-hero .hero-bg {
