@@ -2463,11 +2463,20 @@ a.contact-value:hover {
 .owners-grid-teaser .owner-card {
     flex: 1;
     max-width: 220px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .owners-grid-teaser .owner-image-wrapper {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.owners-grid-teaser .owner-info {
+    text-align: center;
+    width: 100%;
 }
 
 .about-grid {
