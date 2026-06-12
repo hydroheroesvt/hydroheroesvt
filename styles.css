@@ -2752,7 +2752,51 @@ a.contact-value:hover {
     /* Ensure background is readable but visible */
     .hero-bg {
         /* Darkened overlay for better text readability */
-        background: linear-gradient(180deg, rgba(5, 25, 45, 0.88) 0%, rgba(15, 50, 85, 0.8) 100%) !important;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 100%) !important;
+    }
+
+    /* Mobile-only: use vertical image for windows hero */
+    .hero.windows-hero {
+        background: url('images/mobile-hero-windows.jpg?v=1') center center / cover no-repeat;
+        min-height: 100vh;
+    }
+
+    /* Mobile-only: hide extra elements, show only title + CTA */
+    .windows-hero .hero-badge {
+        display: none !important;
+    }
+
+    .windows-hero .hero-subtitle {
+        display: none !important;
+    }
+
+    .windows-hero .hero-trust {
+        display: none !important;
+    }
+
+    .windows-hero .hero-ctas .btn-secondary {
+        display: none !important;
+    }
+
+    .windows-hero .hero-ctas {
+        margin-bottom: 0;
+    }
+
+    .windows-hero .hero-content {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 60vh;
+    }
+
+    .windows-hero .hero-title {
+        text-align: center;
+        font-size: 2.5rem;
+    }
+
+    .windows-hero .hero-ctas .btn {
+        width: auto;
+        padding: 16px 40px;
     }
 
     /* Fix Rotating Text wrapping */
