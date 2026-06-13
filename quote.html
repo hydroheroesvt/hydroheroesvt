@@ -855,43 +855,32 @@
 
                 <form id="quote-form" novalidate>
 
-                    <!-- STEP 1: Choose Service Category -->
+                    <!-- STEP 1: Choose State -->
                     <div class="form-step active" data-step="1">
-                        <h2 class="step-heading">What Do You Need?</h2>
-                        <p class="step-subtitle">Select one or both services.</p>
+                        <h2 class="step-heading">Where Are You Located?</h2>
+                        <p class="step-subtitle">Select your state to start.</p>
 
                         <div class="category-cards">
-                            <label class="category-card" id="cat-card-windows">
-                                <input type="checkbox" name="categories" value="windows" id="cat-windows">
+                            <label class="category-card" id="cat-card-vt">
+                                <input type="radio" name="state" value="VT" id="state-vt" required>
                                 <svg class="category-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.3">
-                                    <rect x="2" y="2" width="20" height="20" rx="3" />
-                                    <line x1="2" y1="12" x2="22" y2="12" />
-                                    <line x1="12" y1="2" x2="12" y2="22" />
-                                    <path d="M5.5 5.5l3 3" opacity="0.4" stroke-width="1.5" />
-                                    <path d="M5.5 15.5l3 3" opacity="0.4" stroke-width="1.5" />
-                                    <path d="M15.5 5.5l3 3" opacity="0.4" stroke-width="1.5" />
-                                    <path d="M15.5 15.5l3 3" opacity="0.4" stroke-width="1.5" />
+                                    stroke-width="1.5">
+                                    <polygon points="6,2 20,2 14,22 8,22" />
                                 </svg>
-                                <span class="category-card-label">Window Washing</span>
+                                <span class="category-card-label">Vermont</span>
                             </label>
 
-                            <label class="category-card" id="cat-card-detailing">
-                                <input type="checkbox" name="categories" value="detailing" id="cat-detailing">
+                            <label class="category-card" id="cat-card-nh">
+                                <input type="radio" name="state" value="NH" id="state-nh" required>
                                 <svg class="category-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.3">
-                                    <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                    <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                                    <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2" />
-                                    <line x1="9" y1="17" x2="15" y2="17" />
-                                    <path d="M5 6h7" />
+                                    stroke-width="1.5">
+                                    <polygon points="10,2 16,2 22,22 10,22" />
                                 </svg>
-                                <span class="category-card-label">Car Detailing</span>
+                                <span class="category-card-label">New Hampshire</span>
                             </label>
                         </div>
 
-                        <p class="category-hint">You can select both!</p>
-                        <p class="category-error" id="cat-error">Please select at least one service</p>
+                        <p class="category-error" id="cat-error">Please select your state</p>
 
                         <div class="step-nav">
                             <button type="button" class="btn-next" onclick="nextStep()">
@@ -1009,8 +998,8 @@
                                 <span class="service-card-label">Skylights</span>
                             </label>
 
-                            <!-- Car Detailing -->
-                            <label class="service-card" data-category="detailing" id="card-ext-detail">
+                            <!-- Car Detailing (Hidden) -->
+                            <label class="service-card" data-category="detailing" id="card-ext-detail" style="display: none;">
                                 <input type="checkbox" name="services" value="Exterior Detail">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -1022,7 +1011,7 @@
                                 <span class="service-card-label">Exterior Detail</span>
                             </label>
 
-                            <label class="service-card" data-category="detailing" id="card-int-detail">
+                            <label class="service-card" data-category="detailing" id="card-int-detail" style="display: none;">
                                 <input type="checkbox" name="services" value="Interior Detail">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -1033,7 +1022,7 @@
                                 <span class="service-card-label">Interior Detail</span>
                             </label>
 
-                            <label class="service-card" data-category="detailing" id="card-wax">
+                            <label class="service-card" data-category="detailing" id="card-wax" style="display: none;">
                                 <input type="checkbox" name="services" value="Spray Wax">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -1042,7 +1031,7 @@
                                 <span class="service-card-label">Spray Wax</span>
                             </label>
 
-                            <label class="service-card" data-category="detailing" id="card-pet">
+                            <label class="service-card" data-category="detailing" id="card-pet" style="display: none;">
                                 <input type="checkbox" name="services" value="Pet Hair Removal">
                                 <svg class="service-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="1.5">
@@ -1117,19 +1106,6 @@
                                 </div>
                                 <span class="error-msg" id="city-error">Please enter your city</span>
                             </div>
-                            <div class="icon-input-group">
-                                <label for="state">State</label>
-                                <div class="icon-input">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-                                        <line x1="4" y1="22" x2="4" y2="15" />
-                                    </svg>
-                                    <select id="state" name="state" required>
-                                        <option value="VT" selected>Vermont</option>
-                                        <option value="NH">New Hampshire</option>
-                                    </select>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="step-nav">
@@ -1195,24 +1171,13 @@
         }
 
         function filterServices() {
-            const w = document.getElementById('cat-windows').checked;
-            const d = document.getElementById('cat-detailing').checked;
-            document.querySelectorAll('.service-card').forEach(card => {
-                const cat = card.dataset.category;
-                if ((cat === 'windows' && w) || (cat === 'detailing' && d)) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                    card.querySelector('input').checked = false;
-                    card.classList.remove('selected');
-                }
-            });
+            // Services filtering is no longer needed since detailing is hidden by default.
         }
 
         function validateStep(step) {
             let valid = true;
             if (step === 1) {
-                if (!document.getElementById('cat-windows').checked && !document.getElementById('cat-detailing').checked) {
+                if (!document.getElementById('state-vt').checked && !document.getElementById('state-nh').checked) {
                     document.getElementById('cat-error').classList.add('visible');
                     valid = false;
                 } else {
@@ -1298,11 +1263,14 @@
         // Init
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.category-card').forEach(card => {
-                const cb = card.querySelector('input[type="checkbox"]');
-                cb.addEventListener('change', () => {
-                    card.classList.toggle('selected', cb.checked);
-                    document.getElementById('cat-error').classList.remove('visible');
-                });
+                const radio = card.querySelector('input[type="radio"]');
+                if (radio) {
+                    radio.addEventListener('change', () => {
+                        document.querySelectorAll('.category-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        document.getElementById('cat-error').classList.remove('visible');
+                    });
+                }
             });
 
             document.querySelectorAll('.service-card').forEach(card => {
@@ -1318,14 +1286,7 @@
                 });
             });
 
-            // URL param pre-selection
-            const service = new URLSearchParams(window.location.search).get('service');
-            if (service === 'windows' || service === 'detailing') {
-                const catId = service === 'windows' ? 'cat-windows' : 'cat-detailing';
-                const cardId = service === 'windows' ? 'cat-card-windows' : 'cat-card-detailing';
-                document.getElementById(catId).checked = true;
-                document.getElementById(cardId).classList.add('selected');
-            }
+            // URL param pre-selection removed for states
         });
 
         // Form submit
