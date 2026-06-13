@@ -890,11 +890,11 @@ ul {
 }
 
 .marquee-left {
-    animation: scrollLeft 60s linear infinite;
+    animation: scrollLeft 100s linear infinite;
 }
 
 .marquee-right {
-    animation: scrollRight 60s linear infinite;
+    animation: scrollRight 100s linear infinite;
 }
 
 @keyframes scrollLeft {
@@ -905,10 +905,6 @@ ul {
 @keyframes scrollRight {
     0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
-}
-
-.marquee-track:hover {
-    animation-play-state: paused;
 }
 
 .marquee-item {
