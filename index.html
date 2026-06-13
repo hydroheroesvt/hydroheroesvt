@@ -56,7 +56,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20">
+    <link rel="stylesheet" href="styles.css?v=21">
 
     <script type="application/ld+json">
     {
@@ -577,21 +577,68 @@
     </section>
 
 
-    <!-- Services Feature Section -->
-    <section class="services-feature" id="services">
+    <!-- Services Grid Section -->
+    <section class="services-page-section" id="services">
         <div class="container">
-            <div class="feature-content">
-                <h2 class="feature-title">
-                    We save your <span class="rotating-text-wrapper"><span class="rotating-text"
-                            id="rotating-text">windows</span></span>
-                </h2>
-                <p class="feature-subtitle">Professional cleaning that protects and preserves what matters most</p>
+            <span class="section-tag">Our Services</span>
+            <h2 class="section-title">What We Do</h2>
+            <p class="section-description">Professional cleaning solutions for every part of your home</p>
+            <div class="services-page-grid">
+                <!-- Top row: 2 large cards -->
+                <a href="/services/exterior-window-cleaning" class="sp-card sp-card-large">
+                    <img src="images/exterior-window-cleaning-service-new.jpg" alt="Exterior Window Cleaning"
+                        loading="lazy">
+                    <div class="sp-card-overlay"></div>
+                    <div class="sp-card-content">
+                        <h3 class="sp-card-title">Exterior Window Cleaning</h3>
+                        <span class="sp-card-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7v10" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
+                <a href="/services/interior-window-cleaning" class="sp-card sp-card-large">
+                    <img src="images/interior-window-final.jpg" alt="Interior Window Cleaning" loading="lazy">
+                    <div class="sp-card-overlay"></div>
+                    <div class="sp-card-content">
+                        <h3 class="sp-card-title">Interior Window Cleaning</h3>
+                        <span class="sp-card-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7v10" />
+                            </svg>
+                        </span>
+                    </div>
+                </a>
 
-                <a href="/services" class="btn btn-secondary-light">
-                    <span>Our Services</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
+                <!-- Bottom row: 4 smaller cards -->
+                <a href="/services/screen-cleaning" class="sp-card sp-card-small">
+                    <img src="images/screen-cleaning-service-new.jpg?v=1" alt="Screen Cleaning" loading="lazy">
+                    <div class="sp-card-overlay"></div>
+                    <div class="sp-card-content">
+                        <h3 class="sp-card-title">Screen Cleaning</h3>
+                    </div>
+                </a>
+                <a href="/services/skylight-washing" class="sp-card sp-card-small">
+                    <img src="images/skylight-cleaning-service-new.jpg" alt="Skylight Washing" loading="lazy">
+                    <div class="sp-card-overlay"></div>
+                    <div class="sp-card-content">
+                        <h3 class="sp-card-title">Skylight Washing</h3>
+                    </div>
+                </a>
+                <a href="/services/track-detailing" class="sp-card sp-card-small">
+                    <img src="images/service_tracks.jpg" alt="Track Detailing" loading="lazy">
+                    <div class="sp-card-overlay"></div>
+                    <div class="sp-card-content">
+                        <h3 class="sp-card-title">Track Detailing</h3>
+                    </div>
+                </a>
+                <a href="/services/commercial-cleaning" class="sp-card sp-card-small">
+                    <img src="images/service_commercial.jpg" alt="Commercial Cleaning" loading="lazy">
+                    <div class="sp-card-overlay"></div>
+                    <div class="sp-card-content">
+                        <h3 class="sp-card-title">Commercial Cleaning</h3>
+                    </div>
                 </a>
             </div>
         </div>
