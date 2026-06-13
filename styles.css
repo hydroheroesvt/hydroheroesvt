@@ -973,85 +973,127 @@ ul {
     margin: 0 auto;
 }
 
-.steps-grid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0;
+/* ===== HEROIC PROCESS ===== */
+.heroic-process-section {
+    padding: 120px 0 100px;
+    background: #fdfaf6; /* Warm light background */
 }
 
-.step-card {
+.heroic-process-card {
+    background: #fdfaf6;
+    border: 2px solid var(--primary);
+    border-radius: 24px;
+    padding: 70px 40px 60px;
     position: relative;
-    flex: 1;
-    max-width: 320px;
-    padding: 40px 30px;
-    background: var(--white);
-    border-radius: var(--radius-lg);
     text-align: center;
-    transition: var(--transition);
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.step-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-xl);
-}
-
-.step-number {
+.process-mascot-wrapper {
     position: absolute;
-    top: -15px;
+    top: -65px; /* Adjust to perfectly center on the border */
     left: 50%;
     transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
+    width: 130px;
+    height: 130px;
+    background: #fdfaf6; /* Clips the border underneath */
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    padding: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gradient-accent);
-    color: var(--primary);
-    font-weight: 700;
-    font-size: 1.1rem;
-    border-radius: 50%;
-    box-shadow: var(--shadow-glow);
+    z-index: 2;
 }
 
-.step-icon {
+.process-mascot {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.heroic-process-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+}
+
+.heroic-process-subtitle {
+    font-size: 1.25rem;
+    color: var(--primary); /* Matching screenshot, text is dark blue */
+    margin-bottom: 60px;
+    font-weight: 600;
+}
+
+.heroic-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.heroic-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.heroic-step-icon {
     width: 80px;
     height: 80px;
-    margin: 0 auto 20px;
+    background: rgba(30, 64, 175, 0.1);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--gray-100);
-    border-radius: var(--radius-lg);
-    transition: var(--transition);
-}
-
-.step-card:hover .step-icon {
-    background: linear-gradient(135deg, rgba(59, 158, 255, 0.1) 0%, rgba(59, 158, 255, 0.2) 100%);
-}
-
-.step-icon svg {
-    width: 36px;
-    height: 36px;
+    margin-bottom: 24px;
     color: var(--primary);
+    /* For the pink jagged border effect, we could use a drop-shadow or border, but let's keep it clean or add a subtle pink ring */
+    box-shadow: 0 0 0 4px #fdfaf6, 0 0 0 6px rgba(255, 182, 193, 0.6);
 }
 
-.step-card h3 {
+.heroic-step-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.heroic-step-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.heroic-step h3 {
     font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary);
+    font-weight: 700;
     margin-bottom: 12px;
+    color: var(--gray-900);
 }
 
-.step-card p {
-    font-size: 0.95rem;
-    color: var(--gray-500);
-    line-height: 1.7;
+.heroic-step p {
+    color: var(--primary);
+    line-height: 1.6;
+    font-weight: 500;
 }
 
-.step-connector {
-    width: 80px;
-    color: var(--gray-300);
+@media (max-width: 768px) {
+    .heroic-steps {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .heroic-process-card {
+        padding: 80px 20px 40px;
+        margin: 0 16px;
+    }
 }
 
 /* ===== SERVICES FEATURE ===== */
