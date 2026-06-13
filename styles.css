@@ -1054,8 +1054,7 @@ ul {
     justify-content: center;
     margin-bottom: 24px;
     color: var(--primary);
-    /* For the pink jagged border effect, we could use a drop-shadow or border, but let's keep it clean or add a subtle pink ring */
-    box-shadow: 0 0 0 4px #fdfaf6, 0 0 0 6px rgba(255, 182, 193, 0.6);
+    box-shadow: 0 0 0 4px #fdfaf6, 0 0 0 6px rgba(30, 64, 175, 0.3);
 }
 
 .heroic-step-icon svg {
