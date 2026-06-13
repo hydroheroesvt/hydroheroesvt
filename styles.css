@@ -890,11 +890,11 @@ ul {
 }
 
 .marquee-left {
-    animation: scrollLeft 35s linear infinite;
+    animation: scrollLeft 60s linear infinite;
 }
 
 .marquee-right {
-    animation: scrollRight 35s linear infinite;
+    animation: scrollRight 60s linear infinite;
 }
 
 @keyframes scrollLeft {
