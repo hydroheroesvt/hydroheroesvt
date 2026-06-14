@@ -930,16 +930,16 @@ ul {
 
 @media (max-width: 768px) {
     .marquee-item {
-        width: 150px;
-        height: 150px;
-        border-radius: var(--radius-lg, 12px);
+        width: 180px;
+        height: 180px;
+        border-radius: var(--radius-lg, 16px);
     }
     .marquee-row {
-        margin-bottom: 12px;
+        margin-bottom: 16px;
     }
     .marquee-group {
-        gap: 12px;
-        padding-right: 12px;
+        gap: 16px;
+        padding-right: 16px;
     }
 }
 
