@@ -3488,21 +3488,21 @@ a.contact-value:hover {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 55%;
+    width: 60%;
     align-items: flex-start;
 }
 
-/* Stagger the cards like the reference */
+/* Stagger the right side of the cards by changing their widths */
 .why-choose-card:nth-child(1) {
-    transform: translateX(0);
+    width: 85%;
 }
 
 .why-choose-card:nth-child(2) {
-    transform: translateX(60px);
+    width: 93%;
 }
 
 .why-choose-card:nth-child(3) {
-    transform: translateX(0);
+    width: 100%;
 }
 
 .why-choose-card {
@@ -3517,22 +3517,13 @@ a.contact-value:hover {
     align-items: flex-start;
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    width: 100%;
     max-width: 650px;
 }
 
 .why-choose-card:hover {
     border-color: rgba(59, 158, 255, 0.35);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* Override hover transform so it doesn't break stagger */
-.why-choose-card:nth-child(1):hover,
-.why-choose-card:nth-child(3):hover {
-    transform: translateX(0) translateY(-3px);
-}
-.why-choose-card:nth-child(2):hover {
-    transform: translateX(60px) translateY(-3px);
+    transform: translateY(-3px);
 }
 
 .why-choose-card-icon {
