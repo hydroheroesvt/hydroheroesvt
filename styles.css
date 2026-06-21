@@ -3494,15 +3494,15 @@ a.contact-value:hover {
 
 /* Stagger the right side of the cards by changing their widths */
 .why-choose-card:nth-child(1) {
-    width: 85%;
+    max-width: 540px;
 }
 
 .why-choose-card:nth-child(2) {
-    width: 93%;
+    max-width: 600px;
 }
 
 .why-choose-card:nth-child(3) {
-    width: 100%;
+    max-width: 660px;
 }
 
 .why-choose-card {
@@ -3517,6 +3517,7 @@ a.contact-value:hover {
     align-items: flex-start;
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    width: 100%;
     max-width: 650px;
 }
 
