@@ -3490,17 +3490,17 @@ a.contact-value:hover {
     width: 55%;
 }
 
-/* Stagger the cards diagonally like the reference */
+/* Stagger the cards like the reference */
 .why-choose-card:nth-child(1) {
     margin-left: 0;
 }
 
 .why-choose-card:nth-child(2) {
-    margin-left: 40px;
+    margin-left: 60px;
 }
 
 .why-choose-card:nth-child(3) {
-    margin-left: 80px;
+    margin-left: 0;
 }
 
 .why-choose-card {
