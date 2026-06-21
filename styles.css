@@ -3399,10 +3399,11 @@ a.contact-value:hover {
 /* ===== WHY CHOOSE US ===== */
 .why-choose-section {
     position: relative;
-    min-height: 700px;
+    min-height: 750px;
     display: flex;
     align-items: center;
     overflow: hidden;
+    background: var(--off-white);
 }
 
 .why-choose-bg {
@@ -3415,33 +3416,53 @@ a.contact-value:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: left center;
     display: block;
 }
 
+/* Fade image to white/light on the right, keep person visible on left */
 .why-choose-bg::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(10, 37, 64, 0.75) 0%, rgba(10, 37, 64, 0.4) 50%, rgba(10, 37, 64, 0.2) 100%);
+    background:
+        linear-gradient(to right, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0.3) 30%, rgba(248, 250, 252, 0.75) 50%, rgba(248, 250, 252, 0.95) 65%, rgba(248, 250, 252, 1) 80%);
+}
+
+/* Blur overlay on right side only */
+.why-choose-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1;
+    mask-image: linear-gradient(to right, transparent 0%, black 40%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%);
 }
 
 .why-choose-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 100px 40px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .why-choose-header {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+    margin-bottom: 40px;
+    text-align: center;
+    width: 55%;
 }
 
 .why-choose-tag {
@@ -3455,9 +3476,9 @@ a.contact-value:hover {
 
 .why-choose-title {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2rem, 4vw, 2.8rem);
     font-weight: 800;
-    color: var(--white);
+    color: var(--primary);
     line-height: 1.15;
     text-transform: uppercase;
 }
@@ -3466,24 +3487,40 @@ a.contact-value:hover {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 55%;
+}
+
+/* Stagger the cards diagonally like the reference */
+.why-choose-card:nth-child(1) {
+    margin-left: 0;
+}
+
+.why-choose-card:nth-child(2) {
+    margin-left: 40px;
+}
+
+.why-choose-card:nth-child(3) {
+    margin-left: 80px;
 }
 
 .why-choose-card {
-    background: rgba(10, 37, 64, 0.75);
+    background: rgba(10, 37, 64, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(59, 158, 255, 0.15);
+    border: 1px solid rgba(59, 158, 255, 0.12);
     border-radius: 16px;
     padding: 28px 32px;
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .why-choose-card:hover {
     transform: translateY(-3px);
     border-color: rgba(59, 158, 255, 0.35);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
 .why-choose-card-icon {
@@ -3491,7 +3528,7 @@ a.contact-value:hover {
     width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: rgba(59, 158, 255, 0.12);
+    background: rgba(59, 158, 255, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3516,24 +3553,41 @@ a.contact-value:hover {
 .why-choose-card-text p {
     font-family: 'Outfit', sans-serif;
     font-size: 0.92rem;
-    color: rgba(255, 255, 255, 0.72);
+    color: rgba(255, 255, 255, 0.75);
     line-height: 1.6;
 }
 
 @media (max-width: 900px) {
     .why-choose-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        align-items: center;
         padding: 80px 24px;
-        text-align: center;
     }
 
     .why-choose-header {
-        align-items: center;
+        width: 100%;
     }
 
-    .why-choose-card {
-        padding: 24px;
+    .why-choose-cards {
+        width: 100%;
+    }
+
+    .why-choose-card:nth-child(1),
+    .why-choose-card:nth-child(2),
+    .why-choose-card:nth-child(3) {
+        margin-left: 0;
+    }
+
+    .why-choose-bg::after {
+        background: linear-gradient(to bottom, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0.6) 30%, rgba(248, 250, 252, 0.9) 50%, rgba(248, 250, 252, 1) 70%);
+    }
+
+    .why-choose-bg::before {
+        width: 100%;
+        height: 70%;
+        top: auto;
+        bottom: 0;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
     }
 }
 
@@ -3544,7 +3598,6 @@ a.contact-value:hover {
 
     .why-choose-content {
         padding: 60px 16px;
-        gap: 32px;
     }
 
     .why-choose-card {
