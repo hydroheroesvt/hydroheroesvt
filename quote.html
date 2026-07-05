@@ -247,7 +247,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            max-width: 420px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -300,11 +300,22 @@
         }
 
         .category-card-label {
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        .category-card-subtext {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .category-card.selected .category-card-subtext {
+            color: rgba(10, 37, 64, 0.85);
         }
 
         .category-card::after {
@@ -856,31 +867,34 @@
 
                 <form id="quote-form" novalidate>
 
-                    <!-- STEP 1: Home or Business -->
+                    <!-- STEP 1: Last Cleaned -->
                     <div class="form-step active" data-step="1">
-                        <h2 class="step-heading">What Are You Looking For?</h2>
-                        <p class="step-subtitle">Is this for your home or business?</p>
+                        <h2 class="step-heading">Window Condition</h2>
+                        <p class="step-subtitle">When was the last time you had your windows professionally cleaned?</p>
 
                         <div class="category-cards">
-                            <label class="category-card" id="cat-card-home">
-                                <input type="radio" name="property_type" value="Home" id="type-home" required>
-                                <svg class="category-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.8">
-                                    <path d="M3 12L12 3l9 9" stroke-linejoin="round" />
-                                    <path d="M5 10v10a1 1 0 001 1h3v-5a1 1 0 011-1h4a1 1 0 011 1v5h3a1 1 0 001-1V10" stroke-linejoin="round" fill="currentColor" fill-opacity="0.08" />
-                                </svg>
-                                <span class="category-card-label">Home</span>
+                            <label class="category-card" id="cat-card-1">
+                                <input type="radio" name="last_cleaned" value="Within the last year" id="type-1" required>
+                                <span class="category-card-label">Within the last year</span>
+                                <span class="category-card-subtext">Recently cleaned</span>
                             </label>
 
-                            <label class="category-card" id="cat-card-business">
-                                <input type="radio" name="property_type" value="Business" id="type-business" required>
-                                <svg class="category-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="1.8">
-                                    <rect x="4" y="6" width="16" height="16" rx="2" stroke-linejoin="round" fill="currentColor" fill-opacity="0.08" />
-                                    <path d="M9 6V4a2 2 0 012-2h2a2 2 0 012 2v2" stroke-linejoin="round" />
-                                    <line x1="4" y1="13" x2="20" y2="13" />
-                                </svg>
-                                <span class="category-card-label">Business</span>
+                            <label class="category-card" id="cat-card-2">
+                                <input type="radio" name="last_cleaned" value="Within 1 to 2 years" id="type-2" required>
+                                <span class="category-card-label">Within 1-2 years</span>
+                                <span class="category-card-subtext">Moderate build-up</span>
+                            </label>
+
+                            <label class="category-card" id="cat-card-3">
+                                <input type="radio" name="last_cleaned" value="Over 2 years ago" id="type-3" required>
+                                <span class="category-card-label">Over 2 years ago</span>
+                                <span class="category-card-subtext">Significant build-up</span>
+                            </label>
+
+                            <label class="category-card" id="cat-card-4">
+                                <input type="radio" name="last_cleaned" value="Never" id="type-4" required>
+                                <span class="category-card-label">Never</span>
+                                <span class="category-card-subtext">First professional clean</span>
                             </label>
                         </div>
 
@@ -1194,7 +1208,7 @@
         function validateStep(step) {
             let valid = true;
             if (step === 1) {
-                if (!document.getElementById('type-home').checked && !document.getElementById('type-business').checked) {
+                if (!document.getElementById('type-1').checked && !document.getElementById('type-2').checked && !document.getElementById('type-3').checked && !document.getElementById('type-4').checked) {
                     document.getElementById('cat-error').classList.add('visible');
                     valid = false;
                 } else {
@@ -1325,10 +1339,11 @@
                 name: fd.get('name'),
                 email: fd.get('email'),
                 phone: fd.get('phone'),
-                property_type: fd.get('property_type'),
+                last_cleaned: fd.get('last_cleaned'),
+                property_type: fd.get('last_cleaned'),
                 address: `${fd.get('street')}, ${fd.get('city')}, ${fd.get('state')}`,
                 services: fd.getAll('services').join(', ') || 'Not specified',
-                message: fd.get('message') || 'No additional details'
+                message: `Last Cleaned: ${fd.get('last_cleaned')}\n\n` + (fd.get('message') || 'No additional details')
             };
 
             const btn = this.querySelector('.btn-submit');
