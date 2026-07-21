@@ -488,16 +488,51 @@ document.addEventListener('DOMContentLoaded', function () {
         const range = slider.querySelector('.comparison-range');
         const beforeImage = slider.querySelector('.comparison-before');
         const handle = slider.querySelector('.comparison-handle');
+        let isDragging = false;
 
         function updateSlider(value) {
             const percent = 100 - value;
             beforeImage.style.clipPath = `inset(0 ${percent}% 0 0)`;
             handle.style.left = `${value}%`;
+            range.value = value;
         }
 
+        // Range input fallback
         range.addEventListener('input', (e) => {
             updateSlider(e.target.value);
         });
+
+        // Direct pointer/touch events on the slider container
+        function getPercent(e) {
+            const rect = slider.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            let pct = ((clientX - rect.left) / rect.width) * 100;
+            return Math.max(0, Math.min(100, pct));
+        }
+
+        slider.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            slider.setPointerCapture(e.pointerId);
+            updateSlider(getPercent(e));
+            e.preventDefault();
+        });
+
+        slider.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            updateSlider(getPercent(e));
+            e.preventDefault();
+        });
+
+        slider.addEventListener('pointerup', (e) => {
+            isDragging = false;
+        });
+
+        slider.addEventListener('pointercancel', () => {
+            isDragging = false;
+        });
+
+        // Prevent default drag behavior on images
+        slider.addEventListener('dragstart', (e) => e.preventDefault());
 
         // Initialize at 50%
         updateSlider(50);

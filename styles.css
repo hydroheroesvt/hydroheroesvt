@@ -714,6 +714,26 @@ ul {
     z-index: 20;
     -webkit-appearance: none;
     appearance: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    touch-action: pan-y;
+}
+
+.comparison-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 48px;
+    height: 100%;
+    cursor: ew-resize;
+}
+
+.comparison-range::-moz-range-thumb {
+    width: 48px;
+    height: 100%;
+    cursor: ew-resize;
+    border: none;
+    background: transparent;
 }
 
 @media (max-width: 768px) {
