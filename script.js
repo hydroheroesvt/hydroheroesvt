@@ -494,13 +494,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const percent = 100 - value;
             beforeImage.style.clipPath = `inset(0 ${percent}% 0 0)`;
             handle.style.left = `${value}%`;
-            range.value = value;
+            if (range) range.value = value;
         }
 
-        // Range input fallback
-        range.addEventListener('input', (e) => {
-            updateSlider(e.target.value);
-        });
+        // Range input fallback (if it exists)
+        if (range) {
+            range.addEventListener('input', (e) => {
+                updateSlider(e.target.value);
+            });
+        }
 
         // Direct pointer/touch events on the slider container
         function getPercent(e) {
