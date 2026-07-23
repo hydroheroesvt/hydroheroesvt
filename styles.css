@@ -635,6 +635,9 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    user-drag: none;
 }
 
 .comparison-after {
@@ -657,6 +660,7 @@ ul {
     border-radius: 20px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    pointer-events: none;
 }
 
 .comparison-before .comparison-label {
