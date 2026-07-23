@@ -504,34 +504,46 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
-        // Direct pointer/touch events on the slider container
+        // Direct touch and mouse events on the slider container
         function getPercent(e) {
             const rect = slider.getBoundingClientRect();
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            // Use e.touches[0] for touch events, e.clientX for mouse events
+            const clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : (e.clientX || 0);
             let pct = ((clientX - rect.left) / rect.width) * 100;
             return Math.max(0, Math.min(100, pct));
         }
 
-        slider.addEventListener('pointerdown', (e) => {
+        function handleStart(e) {
             isDragging = true;
-            slider.setPointerCapture(e.pointerId);
             updateSlider(getPercent(e));
-            e.preventDefault();
-        });
+        }
 
-        slider.addEventListener('pointermove', (e) => {
+        function handleMove(e) {
             if (!isDragging) return;
             updateSlider(getPercent(e));
-            e.preventDefault();
-        });
+        }
 
-        slider.addEventListener('pointerup', (e) => {
+        function handleEnd() {
             isDragging = false;
-        });
+        }
 
-        slider.addEventListener('pointercancel', () => {
-            isDragging = false;
+        // Mouse events
+        slider.addEventListener('mousedown', (e) => {
+            handleStart(e);
+            e.preventDefault(); // Prevent text/image selection
         });
+        window.addEventListener('mousemove', handleMove);
+        window.addEventListener('mouseup', handleEnd);
+
+        // Touch events
+        slider.addEventListener('touchstart', handleStart, { passive: true });
+        window.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                handleMove(e);
+                if (e.cancelable) e.preventDefault(); // Prevent scrolling while dragging slider
+            }
+        }, { passive: false });
+        window.addEventListener('touchend', handleEnd);
 
         // Prevent default drag behavior on images
         slider.addEventListener('dragstart', (e) => e.preventDefault());
