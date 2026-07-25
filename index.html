@@ -1302,6 +1302,55 @@
         </div>
     </section>
 
+    <script>
+    // Self-contained reviews carousel
+    (function() {
+        var track = document.getElementById('reviews-track');
+        var leftBtn = document.querySelector('.reviews-arrow-left');
+        var rightBtn = document.querySelector('.reviews-arrow-right');
+        if (!track || !leftBtn || !rightBtn) { console.error('Reviews carousel: missing elements', {track:!!track, leftBtn:!!leftBtn, rightBtn:!!rightBtn}); return; }
+
+        var idx = 0;
+
+        function perView() {
+            if (window.innerWidth <= 600) return 1;
+            if (window.innerWidth <= 900) return 2;
+            return 3;
+        }
+
+        function cardW() {
+            var c = track.querySelector('.review-card');
+            if (!c) return 0;
+            var gap = parseInt(getComputedStyle(track).gap) || 20;
+            return c.offsetWidth + gap;
+        }
+
+        function slide() {
+            var total = track.querySelectorAll('.review-card').length;
+            var pv = perView();
+            var max = Math.max(0, total - pv);
+            idx = Math.max(0, Math.min(idx, max));
+            track.style.transform = 'translateX(-' + (idx * cardW()) + 'px)';
+        }
+
+        leftBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            idx = Math.max(0, idx - 1);
+            slide();
+        };
+
+        rightBtn.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            idx++;
+            slide();
+        };
+
+        window.addEventListener('resize', slide);
+    })();
+    </script>
+
     <!-- FAQ Section (Window Washing) -->
     <section class="faq-section" id="faq-windows">
         <div class="container">
@@ -1632,7 +1681,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=11"></script>
 
 
     <!-- Vercel Analytics -->
